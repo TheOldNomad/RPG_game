@@ -1,9 +1,9 @@
 import random
 
-from .character import Character
+from .character import Player
 
 
-class Monster(Character):
+class Monster(Player):
     def __init__(self, given_name: str):
         self.name = given_name
 

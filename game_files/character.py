@@ -1,7 +1,7 @@
 import random
 
 
-class Character:
+class Player:
     name: str
     health_points: int
     damage: int
@@ -10,7 +10,7 @@ class Character:
     death_stockphrases: list[str]
     alive: bool
 
-    def dealing_damage(self, character_taking_damage: "Character") -> None:
+    def dealing_damage(self, character_taking_damage: "Player") -> None:
         if not self.alive:
             return
         character_taking_damage.health_points = character_taking_damage.health_points - self.damage
@@ -23,9 +23,9 @@ class Character:
             character_taking_damage.alive = False
             character_taking_damage.death(character_taking_damage)
 
-    def death(self, dying_character: "Character") -> None:
+    def death(self, dying_character: "Player") -> None:
         print(dying_character.name + " perishes, saying " + random.choice(dying_character.death_stockphrases))
 
-    def healing(self, character_drinking_potion: "Character") -> None:
+    def healing(self, character_drinking_potion: "Player") -> None:
         character_drinking_potion.health_points = character_drinking_potion.health_points + self.health_regeneration
         print("A sip from the rusty canteen restores your breath and fills you with a nice warmth")
