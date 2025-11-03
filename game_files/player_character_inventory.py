@@ -4,39 +4,39 @@ from .items import Item
 
 
 class Sword(Item):
-    def __init__(self) -> None:
+    def __init__(self, key_name: str) -> None:
         self.item_type = "Weapon"
-        self.item_name = "Faggot slayer"
-        self.item_description = "A weapon from much more elegant times, built for slaying the enemies of the state"
-        self.item_parameters = random.randint(45, 90)
+        self.item_name = key_name
+        self.item_description = "a weapon from much more elegant times, built for slaying the enemies of the state"
+        self.damage_dealt = random.randint(45, 90)
 
 
 class Axe(Item):
-    def __init__(self) -> None:
+    def __init__(self, key_name: str) -> None:
         self.item_type = "Weapon"
-        self.item_name = "N-word crusher"
-        self.item_description = "A weapon from much more barbaric times, built for slaying you-know-who"
-        self.item_parameters = random.randint(60, 120)
+        self.item_name = key_name
+        self.item_description = "a weapon from much more barbaric times, built for slaying you-know-who"
+        self.damage_dealt = random.randint(60, 120)
 
 
 class Potion(Item):
-    def __init__(self) -> None:
+    def __init__(self, key_name: str) -> None:
         self.item_type = "Health potion"
-        self.item_name = "Baltica 9"
+        self.item_name = key_name
         self.item_description = (
-            "A potion, brewed by the madliest of alchemists, determined to create the ultimate decoction for healing"
+            "a potion, brewed by the madliest of alchemists, determined to create the ultimate decoction for healing"
         )
-        self.item_parameters = 30
+        self.health_restoration = 30
 
 
 class AdvancedPotion(Item):
-    def __init__(self) -> None:
+    def __init__(self, key_name: str) -> None:
         self.item_type = "Health potion"
-        self.item_name = "Okhota Krepkaya"
+        self.item_name = key_name
         self.item_description = (
-            "A potion, brewed by the madliest of alchemists, fancied in particular by the Montenegrian hunters"
+            "a potion, brewed by the madliest of alchemists, fancied in particular by the Montenegrian hunters"
         )
-        self.item_parameters = 50
+        self.health_restoration = 50
 
 
 inventory = {
@@ -49,27 +49,52 @@ inventory = {
 
 def list_all_items() -> None:
     for item_id, current_item in inventory.items():
-        print(f"{item_id.name()}: {current_item}")
+        print(item_id, current_item)
+
+
+def choosing_item() -> None:
+    item_id = input("Please, type the item's id")
+    current_item = inventory.get(item_id)
+    if current_item:
+        player_command = input(f"""You have picked a {current_item} What would you like to do with it?
+              1 - equip the item
+2 - examine the item
+3 - return to the main inventory
+""")
+        if player_command not in {"1", "2", "3"}:
+            print("No such command, try again, dumbass")
+        elif player_command == "3":
+            return
+        elif player_command == "2":
+            current_item.chosen_item_examination()
+        else:
+            current_item.equip_item()
+    else:
+        print("Item not found, try harder")
 
 
 def inventory_navigation() -> None:
-    user_input = input("""Please, choose a command:
-1 - open the inventory
-2 - examine the item
-""")
     while True:
-        if user_input == "1":
-            list_all_items(inventory)
-            print("These are all the items in the inventory. Would you like to equip one of them?")
-            if user_input != "Yes" or user_input != "No":
+        user_input = input("""Please, choose a command:
+1 - open the inventory
+2 - return to the main game
+""")
+        if user_input not in {"1", "2"}:
+            print("No such command, try again, dumbass")
+        elif user_input == "2":
+            return
+        else:
+            list_all_items()
+            secondary_input = input("These are all the items in the inventory. Would you like to equip one of them?")
+            if secondary_input not in {"Yes", "No"}:
                 print("No such command, use 'Yes' or 'No'")
-            elif user_input != "No":
+            elif secondary_input == "No":
                 return
             else:
-                print("Please, type the item's id to equip it")
-                # equip
+                choosing_item()
 
 
-# В данном файле потенциально прописать все объекты класса Item, которые пойдут в массив player_character_inventory
-# Предложение от Бимбо - написать while-loop в этой вкладке для навигации по инвентарю; таким образом, чтобы в главном
-# меню помимо выбора монстра для нападения, была опция с открытием инвентаря.
+# Дописать цикл так, чтобы меню стало «интерактивным» — можно открывать инвентарь,
+# экипировать предметы и возвращаться без выхода из функции
+# Написать повторный цикл, чтобы пользователь мог экипировать несколько предметов за раз
+# Как вариант - воспользоваться enum
