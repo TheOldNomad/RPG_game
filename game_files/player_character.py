@@ -2,7 +2,7 @@ import array
 import random
 
 from .character import Player
-from .player_character_inventory import AdvancedPotion, Axe, Potion, Sword, inventory_navigation
+from .inventory_navigation import inventory_navigation
 
 
 class Player(Player):
@@ -18,10 +18,6 @@ class Player(Player):
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
         self.active_inventory = []
-        player_weapon = Axe("N-word crusher")
-        player_weapon2 = Sword("Faggot slayer")
-        healing_potion = Potion("Baltica 9")
-        healing_potion2 = AdvancedPotion("Okhota Krepkaya")
 
     def choosing_target_to_attack(self, encountered_mobs: array) -> None:
         user_input = input("You see monsters, which one do you want to attack? Use the numpad to choose the monster")
@@ -50,3 +46,7 @@ class Player(Player):
 
 # Вставить сюда проверку, жив ли монстр, если монстр мертв, его нужно удалить из массива с помощью одной из функций
 # if not encountered_mob.alive
+# player_weapon = Axe("N-word crusher")
+# player_weapon2 = Sword("Faggot slayer")
+# healing_potion = Potion("Baltica 9")
+# healing_potion2 = AdvancedPotion("Okhota Krepkaya")
