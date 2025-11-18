@@ -1,5 +1,5 @@
 from game_files.monster import Monster
-from game_files.player_character import Player
+from game_files.player import Player
 
 if __name__ == "__main__":
     encountered_mob = Monster("stalnoye dildo Damirchika")
@@ -8,7 +8,7 @@ if __name__ == "__main__":
     active_player = Player("Bimba", "shalunishka")
     while active_player.alive:
         active_player.introductory_choice(encountered_mobs)
-        active_player.choosing_target_to_attack(encountered_mobs)
+        active_player.choose_target_to_attack(encountered_mobs)
         if active_player.health_points <= 50:
             user_input = input("Your health seems low. Would you like to drink a potion?")
             if user_input == "Yes":
@@ -16,7 +16,7 @@ if __name__ == "__main__":
             else:
                 pass
         for current_monster in encountered_mobs:
-            current_monster.dealing_damage(active_player)
+            current_monster.deal_damage(active_player)
         if not encountered_mob.alive and not encountered_mob2.alive:
             print("You have successfully cleared out a dungeon! Now go and get yourself a job, you nerd")
             break

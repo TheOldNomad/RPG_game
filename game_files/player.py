@@ -1,11 +1,11 @@
 import array
 import random
 
-from .character import Player
-from .inventory_navigation import inventory_navigation
+from .character import Character
+from .player_inventory import INITIAL_PLAYER_INVENTORY
 
 
-class Player(Player):
+class Player(Character):
     rpg_class: str
 
     def __init__(self, given_name: str, given_rpg_class: str):
@@ -18,8 +18,9 @@ class Player(Player):
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
         self.active_inventory = []
+        self.inventory = INITIAL_PLAYER_INVENTORY.copy()
 
-    def choosing_target_to_attack(self, encountered_mobs: array) -> None:
+    def choose_target_to_attack(self, encountered_mobs: array) -> None:
         user_input = input("You see monsters, which one do you want to attack? Use the numpad to choose the monster")
         current_monster_index = int(user_input)
         if not user_input.isdigit():
@@ -28,20 +29,9 @@ class Player(Player):
         if current_monster_index < 0 or current_monster_index >= len(encountered_mobs):
             print("This monster has already perished. Would you like to attack the other one?")
             return
-        self.dealing_damage(encountered_mobs[current_monster_index])
+        self.deal_damage(encountered_mobs[current_monster_index])
         if not encountered_mobs[current_monster_index].alive:
             encountered_mobs.pop(current_monster_index)
-
-    def introductory_choice(self, encountered_mobs: array) -> None:
-        player_choice = input("""You see a suspiciously looking cave. What will be your actions?" \
-        "1 - open the inventory" \
-        "2 - enter the cave""")
-        if player_choice not in {"1", "2"}:
-            print("No such option exists, try again, smartass")
-        elif player_choice == "1":
-            inventory_navigation()
-        else:
-            self.choosing_target_to_attack(encountered_mobs)
 
 
 # Вставить сюда проверку, жив ли монстр, если монстр мертв, его нужно удалить из массива с помощью одной из функций
