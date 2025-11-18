@@ -1,4 +1,4 @@
-from .player import Player
+from game_files.entities.player import Player
 
 
 def list_all_items(player: Player) -> None:

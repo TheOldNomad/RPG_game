@@ -1,6 +1,6 @@
 import random
 
-from .player import Player
+from game_files.entities.player import Player
 
 
 class Item:

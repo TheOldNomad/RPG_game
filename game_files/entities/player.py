@@ -2,7 +2,6 @@ import array
 import random
 
 from .character import Character
-from .player_inventory import INITIAL_PLAYER_INVENTORY
 
 
 class Player(Character):
@@ -18,6 +17,8 @@ class Player(Character):
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
         self.active_inventory = []
+        from game_files.items.player_inventory import INITIAL_PLAYER_INVENTORY
+
         self.inventory = INITIAL_PLAYER_INVENTORY.copy()
 
     def choose_target_to_attack(self, encountered_mobs: array) -> None:

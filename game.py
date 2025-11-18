@@ -1,5 +1,6 @@
-from game_files.monster import Monster
-from game_files.player import Player
+from game_files.entities.monster import Monster
+from game_files.entities.player import Player
+from game_files.interfaces.player_interface import introductory_choice
 
 if __name__ == "__main__":
     encountered_mob = Monster("stalnoye dildo Damirchika")
@@ -7,7 +8,7 @@ if __name__ == "__main__":
     encountered_mobs = [encountered_mob, encountered_mob2]
     active_player = Player("Bimba", "shalunishka")
     while active_player.alive:
-        active_player.introductory_choice(encountered_mobs)
+        introductory_choice(active_player, encountered_mobs)
         active_player.choose_target_to_attack(encountered_mobs)
         if active_player.health_points <= 50:
             user_input = input("Your health seems low. Would you like to drink a potion?")
