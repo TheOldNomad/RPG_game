@@ -1,4 +1,4 @@
-from .items import AdvancedPotion, Axe, Potion, Sword
+from .items import AdvancedPotion, Axe, Item, Potion, Sword
 
 
 class Inventory:
@@ -9,6 +9,9 @@ class Inventory:
             "item 3": Potion("Baltica 9"),
             "item 4": AdvancedPotion("Okhota Krepkaya"),
         }
+
+    def equip_item(self, name_id: str, current_item: Item) -> None:
+        self.INITIAL_PLAYER_INVENTORY[name_id] = current_item
 
 
 # Дописать цикл так, чтобы меню стало «интерактивным» — можно открывать инвентарь,

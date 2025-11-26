@@ -1,6 +1,8 @@
 import array
 import random
 
+from game_files.items.player_inventory import INITIAL_PLAYER_INVENTORY
+
 from .character import Character
 
 
@@ -17,8 +19,6 @@ class Player(Character):
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
         self.active_inventory = []
-        from game_files.items.player_inventory import INITIAL_PLAYER_INVENTORY
-
         self.inventory = INITIAL_PLAYER_INVENTORY.copy()
 
     def choose_target_to_attack(self, encountered_mobs: array) -> None:
@@ -33,6 +33,10 @@ class Player(Character):
         self.deal_damage(encountered_mobs[current_monster_index])
         if not encountered_mobs[current_monster_index].alive:
             encountered_mobs.pop(current_monster_index)
+
+    def equip_to_active_inventory(self, item_id: str) -> None:
+        self.active_inventory.append(item_id)
+        print(f"{self} successfully equipped!")
 
 
 # Вставить сюда проверку, жив ли монстр, если монстр мертв, его нужно удалить из массива с помощью одной из функций

@@ -2,6 +2,9 @@ from game_files.entities.player import Player
 
 
 def list_all_items(player: Player) -> None:
+    if not player.inventory:
+        print("The inventory is currently empty")
+        return
     for item_id, current_item in player.inventory.items():
         print(item_id, current_item)
 

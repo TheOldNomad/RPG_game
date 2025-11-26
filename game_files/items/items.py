@@ -1,7 +1,5 @@
 import random
 
-from game_files.entities.player import Player
-
 
 class Item:
     item_type: str
@@ -19,10 +17,6 @@ class Item:
 
     def __str__(self) -> str:
         return f"{self.item_type}: {self.item_name}"
-
-    def equip_item(self, player_character: Player) -> None:
-        player_character.active_inventory.append(self)
-        print(f"{self} successfully equipped!")
 
 
 class Sword(Item):
