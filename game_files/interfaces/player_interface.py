@@ -1,4 +1,5 @@
 from game_files.entities.player import Player
+from game_files.items.player_inventory import Inventory
 
 
 def list_all_items(player: Player) -> None:
@@ -11,7 +12,7 @@ def list_all_items(player: Player) -> None:
 
 def choose_item(player: Player) -> None:
     item_id = input("Please, type the item's id")
-    current_item = player.inventory.get(item_id)
+    current_item = player.choose_item(item_id)
     if not current_item:
         print("Item not found, try harder")
         return
