@@ -1,5 +1,4 @@
 from game_files.entities.player import Player
-from game_files.items.player_inventory import Inventory
 
 
 def list_all_items(player: Player) -> None:
@@ -10,7 +9,7 @@ def list_all_items(player: Player) -> None:
         print(item_id, current_item)
 
 
-def choose_item(player: Player) -> None:
+def select_item(player: Player) -> None:
     item_id = input("Please, type the item's id")
     current_item = player.choose_item(item_id)
     if not current_item:
@@ -29,7 +28,7 @@ def choose_item(player: Player) -> None:
     elif player_command == "2":
         current_item.chosen_item_examination()
     else:
-        current_item.equip_item()
+        player.equip_item(current_item)
 
 
 # def list_commands ():
@@ -51,20 +50,6 @@ def inventory_navigation(player: Player) -> None:
             continue
         if user_input == "2":
             return
-
-        list_all_items()
-        secondary_input = input("These are all the items in the inventory. Would you like to equip one of them?")
-        if secondary_input not in {"Yes", "No"}:
-            print("No such command, use 'Yes' or 'No'")
-        elif secondary_input == "No":
-            return
-        else:
-            choose_item()
-
-        print("""Please, choose a command:
-1 - open the inventory
-2 - return to the main game
-""")
         match input():
             case "1":
                 list_all_items(player)
@@ -76,7 +61,7 @@ def inventory_navigation(player: Player) -> None:
                 elif secondary_input == "No":
                     return
                 else:
-                    choose_item()
+                    select_item(player)
             case "2":
                 return
             case _:

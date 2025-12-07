@@ -1,12 +1,14 @@
-from game_files.entities.monster import Monster
-from game_files.entities.player import Player
-from game_files.interfaces.player_interface import introductory_choice
+from entities.monster import Monster
+from interfaces.player_interface import introductory_choice
+from items.player_inventory import Inventory
+
+from .entities.player import Player
 
 if __name__ == "__main__":
     encountered_mob = Monster("stalnoye dildo Damirchika")
     encountered_mob2 = Monster("popka Nekrasova")
     encountered_mobs = [encountered_mob, encountered_mob2]
-    active_player = Player("Bimba", "shalunishka")
+    active_player = Player("Bimba", "shalunishka", base_player_inventory=Inventory())
     while active_player.alive:
         introductory_choice(active_player, encountered_mobs)
         active_player.choose_target_to_attack(encountered_mobs)

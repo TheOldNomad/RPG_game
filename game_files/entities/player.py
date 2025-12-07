@@ -1,7 +1,7 @@
 import array
 import random
 
-from game_files.items.player_inventory import Inventory
+from items.player_inventory import Inventory
 
 from .character import Character
 
