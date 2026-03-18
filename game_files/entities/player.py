@@ -1,15 +1,19 @@
-import array
 import random
+from typing import TYPE_CHECKING
 
-from items.player_inventory import Inventory
+from game_files.items.items import Item
+from game_files.items.player_inventory import ActiveInventory, Inventory
 
-from .character import Character
+from .entity import Entity
+
+if TYPE_CHECKING:
+    pass
 
 
-class Player(Character):
+class Player(Entity):
     rpg_class: str
 
-    def __init__(self, given_name: str, given_rpg_class: str, base_player_inventory: Inventory):
+    def __init__(self, given_name: str, given_rpg_class: str):
         self.name = given_name
         self.rpg_class = given_rpg_class
         self.health_points = 60
@@ -18,10 +22,11 @@ class Player(Character):
         self.alive = True
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
-        self.active_inventory = []
-        self.inventory = base_player_inventory
+        self.armor_slots = ActiveInventory()
+        self.weapon_slots = ActiveInventory()
+        self.inventory = Inventory()
 
-    def choose_target_to_attack(self, encountered_mobs: array) -> None:
+    def choose_target_to_attack(self, encountered_mobs: list) -> None:
         user_input = input("You see monsters, which one do you want to attack? Use the numpad to choose the monster")
         current_monster_index = int(user_input)
         if not user_input.isdigit():
@@ -34,14 +39,9 @@ class Player(Character):
         if not encountered_mobs[current_monster_index].alive:
             encountered_mobs.pop(current_monster_index)
 
-    def equip_item(self, item_id: str) -> None:
-        self.active_inventory.append(item_id)
+    def equip_item(self) -> None:
+        self.armor_slots.equip_armor()
         print(f"{self} successfully equipped!")
 
 
 # Вставить сюда проверку, жив ли монстр, если монстр мертв, его нужно удалить из массива с помощью одной из функций
-# if not encountered_mob.alive
-# player_weapon = Axe("N-word crusher")
-# player_weapon2 = Sword("Faggot slayer")
-# healing_potion = Potion("Baltica 9")
-# healing_potion2 = AdvancedPotion("Okhota Krepkaya")

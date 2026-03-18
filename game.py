@@ -1,14 +1,12 @@
-from entities.monster import Monster
-from interfaces.player_interface import introductory_choice
-from items.player_inventory import Inventory
-
-from .entities.player import Player
+from game_files.entities.monster import Monster
+from game_files.entities.player import Player
+from game_files.interfaces.player_interface import introductory_choice
 
 if __name__ == "__main__":
     encountered_mob = Monster("stalnoye dildo Damirchika")
     encountered_mob2 = Monster("popka Nekrasova")
     encountered_mobs = [encountered_mob, encountered_mob2]
-    active_player = Player("Bimba", "shalunishka", base_player_inventory=Inventory())
+    active_player = Player("Bimba", "shalunishka")
     while active_player.alive:
         introductory_choice(active_player, encountered_mobs)
         active_player.choose_target_to_attack(encountered_mobs)
@@ -29,5 +27,5 @@ if __name__ == "__main__":
 # инвентарь, пройти в другую локацию, и т.д. При выборе соответствующей опции открывается другой цикл, который отвечает за
 # соответствующую операцию, который при этом расположен в соответствующем файле. Таким образом, главный файл будет отсылать
 # к другим файлам
-
+# python -m game_files.game
 # настроить параметризацию строчек в питоне (чтобы при запуске стринга выводилось имя конкретного монстра, в том числе)

@@ -1,9 +1,9 @@
 import random
 
-from .character import Character
+from .entity import Entity
 
 
-class Monster(Character):
+class Monster(Entity):
     def __init__(self, given_name: str):
         self.name = given_name
 

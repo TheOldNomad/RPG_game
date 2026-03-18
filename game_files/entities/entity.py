@@ -2,7 +2,7 @@ import random
 from typing import Self
 
 
-class Character:
+class Entity:
     name: str
     health_points: int
     damage: int
