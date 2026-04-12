@@ -11,19 +11,6 @@ class Entity:
     death_stockphrases: list[str]
     alive: bool
 
-    def deal_damage(self, character_taking_damage: Self) -> None:
-        if not self.alive:
-            return
-        character_taking_damage.health_points = character_taking_damage.health_points - self.damage
-        print(
-            character_taking_damage.name
-            + " gets hit and screams "
-            + random.choice(character_taking_damage.damage_stockphrases)
-        )
-        if character_taking_damage.health_points <= 0:
-            character_taking_damage.alive = False
-            character_taking_damage.death(character_taking_damage)
-
     def death(self, dying_character: Self) -> None:
         print(dying_character.name + " perishes, saying " + random.choice(dying_character.death_stockphrases))
 

@@ -1,9 +1,9 @@
 import random
 
-from .entity import Entity
+from game_files.entities.damage_dealing_entity import DamageDealingEntity
 
 
-class Monster(Entity):
+class Monster(DamageDealingEntity):
     def __init__(self, given_name: str):
         self.name = given_name
 
@@ -12,7 +12,3 @@ class Monster(Entity):
         self.alive = True
         self.damage_stockphrases = ["How dare you!", "Oi mate, the fook", "I've caught an olive", "You bitch-ass hoe"]
         self.death_stockphrases = ["Aaaaa bilya", "My... popka", "I will meet Margareth Thatcher..."]
-
-
-# self.damage_stockphrases = ["How dare you!", "Oi mate, the fook", "I've caught an olive", "You bitch-ass hoe"]
-# self.death_stockphrases = ["Aaaaa bilya", "My... popka", "I will meet Margareth Thatcher..."]

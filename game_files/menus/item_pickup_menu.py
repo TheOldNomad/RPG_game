@@ -1,14 +1,13 @@
-from items.player_inventory import Inventory
+from game_files.items_and_inventories.player_inventory import Inventory
 
 
-class ItemPickUp:
+class ItemPickUpMenu:
     def choose_item_to_pick_up(self, item_choice_menu: list) -> None:
-        item_choice_menu = []
         items_to_add = []
         user_choice = input(
             f"""Here are the items -"""
             f"""enumerate({item_choice_menu}, start = 1) What would you like to do?
-                            1 - take one item,
+                            1 - take certain items,
                             2 - take all items,
                             3 - close the menu"""
         )
@@ -20,10 +19,14 @@ class ItemPickUp:
             return
         if user_choice == "1":
             while True:
-                item_index = int(input("Enter the index of the item you want to pick up"))
+                chosen_items_indexes = int(
+                    input("Enter the indexes of the items you would like to pick up, separate them using spacebar")
+                )
+                items_to_pick_up = [int(index) for index in chosen_items_indexes.split()]
+                print(items_to_pick_up)
                 for current_index, current_item in enumerate(item_choice_menu, start=1):
-                    if item_index == current_index:
-                        items_to_add.append(item_choice_menu.pop(item_index - 1(current_item)))
+                    if (current_index in chosen_items_indexes) and (current_item in chosen_items_indexes):
+                        items_to_add.append(item_choice_menu.pop(current_item))
                 return
         else:
             print("No such option. Try again, dumbass")

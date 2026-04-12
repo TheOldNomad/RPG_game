@@ -69,9 +69,9 @@ class Club(Weapon):
 class Potion(Item):
     health_restoration: int
 
-    # @abstractmethod
-    # def __init__(self, key_name: str) -> None:
-    #     pass
+    @abstractmethod
+    def __init__(self, key_name: str) -> None:
+        pass
 
 
 class HealthPotion(Potion):
