@@ -1,11 +1,8 @@
 import random
-from typing import TYPE_CHECKING
 
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
+from game_files.items_and_inventories.inventory_slot_mediator import InventoryAndActionSlotsMediator
 from game_files.items_and_inventories.player_inventory import ArmorSlots, Inventory, WeaponSlots
-
-if TYPE_CHECKING:
-    pass
 
 
 class Player(DamageDealingEntity):
@@ -23,3 +20,4 @@ class Player(DamageDealingEntity):
         self.armor_slots = ArmorSlots()
         self.weapon_slots = WeaponSlots()
         self.inventory = Inventory()
+        self.item_equipment_mechanic = InventoryAndActionSlotsMediator()

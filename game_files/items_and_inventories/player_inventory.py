@@ -15,23 +15,24 @@ from game_files.items_and_inventories.items import (
 
 class InventoryTemplate(ABC):
     @abstractmethod
-    def add_item(self, items_to_add_list: list) -> str:
+    def add_item(self, item_to_add: Item) -> None:
         pass
 
     @abstractmethod
-    def discard_item(self, item_id: str) -> None:
+    def add_multiple_items(self, items_to_add_list: list) -> None:
         pass
 
     @abstractmethod
-    def choose_item(self, item_id: str) -> Item | None:
+    def discard_item(self, item_index: int) -> None:
         pass
 
+    @abstractmethod
+    def choose_item(self, item_index: int) -> Item | None:
+        pass
+
+    @abstractmethod
     def list_all_items(self) -> None:
-        if not self.player_inventory:
-            print("The inventory is currently empty")
-            return
-        for current_item in self.player_inventory:
-            print(current_item)
+        pass
 
 
 class Inventory(InventoryTemplate):
@@ -46,19 +47,29 @@ class Inventory(InventoryTemplate):
     def __iter__(self) -> Iterator[tuple[Item]]:
         return iter(self.player_inventory)
 
-    def get_items(self) -> ItemsView:
+    def get_items(self) -> list:
         return self.player_inventory
 
-    def add_item(self, item_list: list) -> str:
-        self.player_inventory.extend(item_list)
+    def add_item(self, item_to_add: Item) -> None:
+        self.player_inventory.append(item_to_add)
 
-    def discard_item(self, item_id: str) -> None:
-        self.player_inventory.pop(item_id)
+    def add_multiple_items(self, items_to_add_list: list) -> None:
+        self.player_inventory.extend(items_to_add_list)
+
+    def discard_item(self, item_index: int) -> None:
+        self.player_inventory.pop(item_index)
 
     def choose_item(self, item_index: int) -> Item | None:
         if 0 <= item_index < len(self.player_inventory):
             return self.player_inventory[item_index]
         raise IndexError("item index not found, try again, genius")
+
+    def list_all_items(self) -> None:
+        if not self.player_inventory:
+            print("The inventory is currently empty")
+            return
+        for current_item in self.player_inventory:
+            print(current_item)
 
 
 class ActiveSlots(ABC):
@@ -67,7 +78,7 @@ class ActiveSlots(ABC):
         pass
 
     @abstractmethod
-    def discard_item(self, item_to_remove: Item, player_inventory: Inventory) -> None:
+    def discard_item(self, item_to_remove: str, player_inventory: Inventory) -> None:
         pass
 
     @abstractmethod
@@ -75,7 +86,7 @@ class ActiveSlots(ABC):
         pass
 
     @abstractmethod
-    def view_equipped_items(self) -> ItemsView[str, Item]:
+    def view_equipped_items(self) -> ItemsView[str, Item | None]:
         pass
 
 
@@ -94,13 +105,14 @@ class WeaponSlots(ActiveSlots):
             print("Wrong item type, dumbass, try again")
             return
 
-    def discard_item(self, item_to_remove: Item, player_inventory: Inventory) -> None:
-        item_to_remove = str(input("please, choose the weapon you would like to remove"))
+    def discard_item(self, item_to_remove: str, player_inventory: Inventory) -> None:
         if item_to_remove in self.weapon_slots:
             removed_item = self.weapon_slots[item_to_remove]
-        if self.weapon_slots[item_to_remove] is not None:
-            self.weapon_slots[item_to_remove] = None
-            player_inventory.add_item(removed_item)
+            if self.weapon_slots[item_to_remove] is not None:
+                self.weapon_slots[item_to_remove] = None
+                player_inventory.add_item(removed_item)
+            else:
+                print("No item is equipped, cannot discard it")
 
     def get_item_parameters(self, item_equipped: Item) -> int | None:
         if isinstance(item_equipped, Weapon) and item_equipped in self.weapon_slots:
@@ -108,7 +120,7 @@ class WeaponSlots(ActiveSlots):
         print("Your hand is empty, chief. You must be really brave for going at monsters barehanded!")
         return None
 
-    def view_equiped_items(self) -> ItemsView[str, Item]:
+    def view_equipped_items(self) -> ItemsView[str, Item | None]:
         return self.weapon_slots.items()
 
 
@@ -133,13 +145,14 @@ class ArmorSlots(ActiveSlots):
             print("Wrong item type, dumbass, try again")
             return
 
-    def discard_item(self, player_inventory: Inventory) -> None:
-        item_to_remove = str(input("please, choose the armor part you would like to remove"))
+    def discard_item(self, item_to_remove: str, player_inventory: Inventory) -> None:
         if item_to_remove in self.armor_slots:
             removed_item = self.armor_slots[item_to_remove]
-        if self.armor_slots[item_to_remove] is not None:
-            self.armor_slots[item_to_remove] = None
-            player_inventory.add_item(removed_item)
+            if self.armor_slots[item_to_remove] is not None:
+                self.armor_slots[item_to_remove] = None
+                player_inventory.add_item(removed_item)
+            else:
+                print("No item is equipped, cannot discard it")
 
     def get_item_parameters(self, item_equipped: Item) -> int | None:
         if item_equipped in self.armor_slots:
@@ -147,7 +160,7 @@ class ArmorSlots(ActiveSlots):
         print("This body part is not armored. You must be really brave for going at monsters like that!")
         return None
 
-    def view_equipped_items(self) -> ItemsView[str, Item]:
+    def view_equipped_items(self) -> ItemsView[str, Item | None]:
         return self.armor_slots.items()
 
 

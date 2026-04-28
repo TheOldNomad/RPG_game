@@ -1,5 +1,4 @@
 import random
-from typing import Self
 
 from game_files.entities.entity import Entity
 

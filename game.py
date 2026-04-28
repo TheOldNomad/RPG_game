@@ -1,7 +1,6 @@
 from game_files.entities.monster import Monster
 from game_files.entities.player import Player
-from game_files.items_and_inventories.player_inventory import Inventory
-from menus.players_action_menu import PlayersActionMenu
+from game_files.menus.players_action_menu import PlayersActionMenu
 
 if __name__ == "__main__":
     encountered_mob = Monster("stalnoye dildo Damirchika")
