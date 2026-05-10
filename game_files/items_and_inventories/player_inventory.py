@@ -1,5 +1,3 @@
-from _collections_abc import Iterator
-from abc import ABC, abstractmethod
 from collections.abc import ItemsView
 
 from game_files.items_and_inventories.items import (
@@ -65,7 +63,7 @@ class WeaponSlots:
             case _:
                 print("Wrong item type, dumbass, try again")
 
-    def discard_item(self, item_to_remove: Weapon) -> None:
+    def discard_item(self, item_to_remove: Weapon | None) -> None:
         match item_to_remove:
             case Sword() | case Axe():
                 item_to_remove = self.main_hand
@@ -122,7 +120,7 @@ class ArmorSlots:
                 print("Wrong item type, dumbass, try again")
                 return
 
-    def discard_item(self, item_to_remove: Armour) -> None:
+    def discard_item(self, item_to_remove: Armour | None) -> None:
         match item_to_remove:
             case Helmet():
                 item_to_remove = self.head
