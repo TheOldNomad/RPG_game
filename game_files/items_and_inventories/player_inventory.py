@@ -1,5 +1,3 @@
-from _collections_abc import Iterator
-from abc import ABC, abstractmethod
 from collections.abc import ItemsView
 
 from game_files.items_and_inventories.items import (
@@ -20,29 +18,7 @@ from game_files.items_and_inventories.items import (
 )
 
 
-class InventoryTemplate(ABC):
-    @abstractmethod
-    def add_item(self, item_to_add: Item) -> None:
-        pass
-
-    @abstractmethod
-    def add_multiple_items(self, items_to_add_list: list) -> None:
-        pass
-
-    @abstractmethod
-    def discard_item(self, item_index: int) -> None:
-        pass
-
-    @abstractmethod
-    def choose_item(self, item_index: int) -> Item | None:
-        pass
-
-    @abstractmethod
-    def list_all_items(self) -> None:
-        pass
-
-
-class Inventory(InventoryTemplate):
+class Inventory:
     def __init__(self) -> None:
         self.player_inventory: list = [
             Sword("Faggot slayer"),
@@ -81,40 +57,46 @@ class Inventory(InventoryTemplate):
 
 class WeaponSlots:
     def __init__(self) -> None:
-        self.main_hand: Weapon | None = None
-        self.secondary_hand: Weapon | None = None
+        self.main_hand: OneHandedMainWeapon | None = None
+        self.secondary_hand: OneHandedSecondaryWeapon | None = None
+
 
     def equip_item(self, chosen_item: Weapon) -> None:
         match chosen_item:
-            case Sword():
+            case Sword() | Axe():
                 self.main_hand = chosen_item
-            case Axe():
-                self.main_hand = chosen_item
-            case Dagger():
-                self.secondary_hand = chosen_item
-            case Club():
+            case Dagger() | Club():
                 self.secondary_hand = chosen_item
             case _:
                 print("Wrong item type, dumbass, try again")
 
-    def discard_item(self, item_to_remove: Weapon) -> None:
+    def discard_item(self, item_to_remove: Weapon | None) -> None:
         match item_to_remove:
-            case Sword():
+            case Sword() | case Axe():
                 item_to_remove = self.main_hand
-            case Axe():
-                item_to_remove = self.main_hand
-            case Dagger():
+                self.main_hand = None
+            case Dagger() | Club():
                 item_to_remove = self.secondary_hand
-            case Club():
-                item_to_remove = self.secondary_hand
-            case None:
+                self.secondary_hand = None
+            case _:
+                print("Wrong item type")
+            if item_to_remove is None:
                 print("No item is equipped, cannot discard it")
+        return item_to_remove
 
     def get_item_parameters(self, item_equipped: Weapon) -> int | None:
-        if item_equipped in self.weapon_slots:
-            return item_equipped.item_parameters
-        print("Your hand is empty, chief. You must be really brave for going at monsters barehanded!")
-        return None
+		match item_equipped:
+            case Sword() | case Axe():
+                currently_equipped_item = self.main_hand
+            case Dagger() | Club():
+                currently_equipped_item = self.secondary_hand
+            case _:
+                print("Wrong item type")
+            if item_equipped is None:
+                print("No weapon here. You must be really brave for going at monsters like that!")
+                return None
+        return item_equipped.item_parameters
+
 
     def view_equipped_items(self) -> ItemsView[str, Weapon | None]:
         return self.weapon_slots.items()
@@ -127,6 +109,7 @@ class ArmorSlots:
         self.arms: Gauntlets | None = None
         self.legs: Trousers | None = None
         self.feet: Boots | None = None
+
 
     def equip_item(self, chosen_item: Armour) -> None:
         match chosen_item:
@@ -142,30 +125,47 @@ class ArmorSlots:
                 self.feet = chosen_item
             case _:
                 print("Wrong item type, dumbass, try again")
+                return
 
-    def discard_item(self, item_to_remove: Armour) -> Armour | None:
+    def discard_item(self, item_to_remove: Armour | None) -> None:
         match item_to_remove:
             case Helmet():
                 item_to_remove = self.head
+	            self.head = None
             case Breastplate():
                 item_to_remove = self.torso
+	            self.torso = None
             case Gauntlets():
                 item_to_remove = self.arms
+	            self.arms = None
             case Trousers():
                 item_to_remove = self.legs
+	            self.legs = None
             case Boots():
                 item_to_remove = self.feet
-            case None:
+	            self.feet = None
+            if item_to_remove is None:
                 print("No item is equipped, cannot discard it")
         return item_to_remove
 
     def get_item_parameters(self, item_equipped: Armour) -> int | None:
-        if item_equipped in self.armor_slots:
-            return item_equipped.item_parameters
-        print("This body part is not armored. You must be really brave for going at monsters like that!")
-        return None
+        match item_equipped:
+            case Helmet():
+                item_equipped = self.head
+            case Breastplate():
+                item_equipped = self.torso
+            case Gauntlets():
+                item_equipped = self.arms
+            case Trousers():
+                item_equipped = self.legs
+            case Boots():
+                item_equipped = self.feet
+            if item_equipped is None:
+        	    print("This body part is not armored. You must be really brave for going at monsters like that!")
+                return None
+        return item_equipped.item_parameters
 
-    def view_equipped_items(self) -> ItemsView[str, Item | None]:
+    def view_equipped_items(self) -> ItemsView[str, Armour | None]:
         return self.armor_slots.items()
 
 

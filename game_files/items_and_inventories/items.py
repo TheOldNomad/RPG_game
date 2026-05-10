@@ -26,7 +26,27 @@ class Weapon(Item):
     hand_to_equip: str
 
 
-class Sword(Weapon):
+class MainWeapon(Weapon):
+    pass
+
+
+class SecondaryWeapon(Weapon):
+    pass
+
+
+class OneHandedMainWeapon(MainWeapon):
+    pass
+
+
+class TwoHandedMainWeapon(MainWeapon):
+    pass
+
+
+class OneHandedSecondaryWeapon(SecondaryWeapon):
+    pass
+    
+
+class Sword(OneHandedMainWeapon):
     def __init__(self, key_name: str) -> None:
         self.item_type = "Weapon"
         self.item_name = key_name
@@ -36,7 +56,7 @@ class Sword(Weapon):
         self.item_parameters = self.damage_dealt = random.randint(45, 90)
 
 
-class Axe(Weapon):
+class Axe(OneHandedMainWeapon):
     def __init__(self, key_name: str) -> None:
         self.item_type = "Weapon"
         self.item_name = key_name
@@ -46,7 +66,7 @@ class Axe(Weapon):
         self.item_parameters = self.damage_dealt = random.randint(60, 120)
 
 
-class Dagger(Weapon):
+class Dagger(OneHandedSecondaryWeapon):
     def __init__(self, key_name: str) -> None:
         self.item_type = "Weapon"
         self.item_name = key_name
@@ -56,7 +76,7 @@ class Dagger(Weapon):
         self.item_parameters = self.damage_dealt = random.randint(20, 40)
 
 
-class Club(Weapon):
+class Club(OneHandedSecondaryWeapon):
     def __init__(self, key_name: str) -> None:
         self.item_type = "Weapon"
         self.item_name = key_name
