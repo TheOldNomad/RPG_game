@@ -32,7 +32,7 @@ class InventoryMenu:
         item_to_remove = str(
             input("Please, choose the part that you want to remove the item from (i.e. left hand/torso, etc.)")
         )
-        item_type_check.remove_item_from_active_slot(item_to_remove, inventory, weapon_slots, armor_slots)
+        item_type_check.get_item_from_active_slot(item_to_remove, inventory, weapon_slots, armor_slots)
 
     def inventory_navigation(
         self,
@@ -44,7 +44,8 @@ class InventoryMenu:
         while True:
             inventory_mediator.list_all_items(player_inventory, weapon_slots, armor_slots)
             user_input = input(
-                "These are all the items in the inventory. What would you like to do next? 1 - select one of the items, 2 - move an equipped item back to inventory, 3 - return to the main game"
+                "These are all the items in the inventory. What would you like to do next? "
+                "1 - select one of the items, 2 - move an equipped item back to inventory, 3 - return to the main game"
             )
             if user_input not in {"1", "2", "3"}:
                 print("No such command, use '1', '2' or '3'")

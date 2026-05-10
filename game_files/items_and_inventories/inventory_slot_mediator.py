@@ -15,19 +15,23 @@ class InventoryAndActionSlotsMediator:
             print("You cannot equip it, only weapon and armor work")
             return
         if isinstance(equipable_item, Weapon):
+            self.get_item_from_active_slot()
             weapon_slots.equip_item(equipable_item, player_inventory)
         else:
+            self.get_item_from_active_slot()
             armor_slots.equip_item(equipable_item, player_inventory)
         print(f"{equipable_item} successfully equipped!")
 
-    def remove_item_from_active_slot(
+    def get_item_from_active_slot(
         self, item_to_remove: Item, player_inventory: Inventory, weapon_slots: WeaponSlots, armor_slots: ArmorSlots
     ) -> None:
         if not (item_to_remove, (Weapon, Armour)):
             print("No such item equipped, try harder")
             return
         if isinstance(item_to_remove, Weapon):
-            weapon_slots.discard_item(item_to_remove, player_inventory)
+            removed_item = weapon_slots.discard_item(item_to_remove, player_inventory)
+            player_inventory.add_item(removed_item)
         else:
-            armor_slots.discard_item(item_to_remove, player_inventory)
+            removed_item = armor_slots.discard_item(item_to_remove, player_inventory)
+            player_inventory.add_item(removed_item)
         print(f"{item_to_remove} removed to the inventory")
