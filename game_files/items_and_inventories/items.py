@@ -44,7 +44,7 @@ class TwoHandedMainWeapon(MainWeapon):
 
 class OneHandedSecondaryWeapon(SecondaryWeapon):
     pass
-    
+
 
 class Sword(OneHandedMainWeapon):
     def __init__(self, key_name: str) -> None:
