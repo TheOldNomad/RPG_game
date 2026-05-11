@@ -64,35 +64,29 @@ class WeaponSlots:
 
     def equip_item(self, chosen_item: Weapon) -> None:
         match chosen_item:
-            case Sword() | Axe():
+            case OneHandedMainWeapon:
                 self.main_hand = chosen_item
-            case Dagger() | Club():
+            case OneHandedSecondaryWeapon:
                 self.secondary_hand = chosen_item
             case _:
                 print("Wrong item type, dumbass, try again")
 
-    def discard_item(self, item_to_remove: OneHandedMainWeapon | OneHandedSecondaryWeapon | None) -> None:
+    def discard_item(self, item_to_remove: OneHandedMainWeapon | OneHandedSecondaryWeapon | None) -> Weapon | None:
+        if item_to_remove is None:
+            print("No item is equipped, cannot discard it")
+            return None
         match item_to_remove:
-            case Sword() | Axe():
-                item_to_remove = self.main_hand
+            case OneHandedMainWeapon():
+                item_returned_to_inventory = self.main_hand
                 self.main_hand = None
-            case Dagger() | Club():
-                item_to_remove = self.secondary_hand
+            case OneHandedSecondaryWeapon():
+                item_returned_to_inventory = self.secondary_hand
                 self.secondary_hand = None
             case _:
                 print("Wrong item type")
-        if item_to_remove is None:
-            print("No item is equipped, cannot discard it")
-        return item_to_remove
+        return item_returned_to_inventory
 
     def get_item_parameters(self, currently_equipped_item: Weapon | None) -> int | None:
-        match currently_equipped_item:
-            case Sword() | Axe():
-                currently_equipped_item = self.main_hand
-            case Dagger() | Club():
-                currently_equipped_item = self.secondary_hand
-            case _:
-                print("Wrong item type")
         if currently_equipped_item is None:
             print("No weapon here. You must be really brave for going at monsters like that!")
             return None
@@ -126,39 +120,29 @@ class ArmorSlots:
                 print("Wrong item type, dumbass, try again")
                 return
 
-    def discard_item(self, item_to_remove: Armour | None) -> None:
+    def discard_item(self, item_to_remove: Armour | None) -> Armour | None:
+        if item_to_remove is None:
+            print("No weapon here. You must be really brave for going at monsters like that!")
+            return None
         match item_to_remove:
             case Helmet():
-                item_to_remove = self.head
+                item_returned_to_inventory = self.head
                 self.head = None
             case Breastplate():
-                item_to_remove = self.torso
+                item_returned_to_inventory = self.torso
                 self.torso = None
             case Gauntlets():
-                item_to_remove = self.arms
+                item_returned_to_inventory = self.arms
                 self.arms = None
             case Trousers():
-                item_to_remove = self.legs
+                item_returned_to_inventory = self.legs
                 self.legs = None
             case Boots():
-                item_to_remove = self.feet
+                item_returned_to_inventory = self.feet
                 self.feet = None
-        if item_to_remove is None:
-            print("No item is equipped, cannot discard it")
-        return item_to_remove
+        return item_returned_to_inventory
 
     def get_item_parameters(self, currently_equipped_item: Armour | None) -> int | None:
-        match currently_equipped_item:
-            case Helmet():
-                currently_equipped_item = self.head
-            case Breastplate():
-                currently_equipped_item = self.torso
-            case Gauntlets():
-                currently_equipped_item = self.arms
-            case Trousers():
-                currently_equipped_item = self.legs
-            case Boots():
-                currently_equipped_item = self.feet
         if currently_equipped_item is None:
             print("This body part is not armored. You must be really brave for going at monsters like that!")
             return None
