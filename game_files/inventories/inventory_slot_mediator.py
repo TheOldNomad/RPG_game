@@ -1,6 +1,7 @@
-from game_files.items_and_inventories.armor import Armor, Item
-from game_files.items_and_inventories.player_inventory import Inventory, WeaponAndArmorSlots
-from game_files.items_and_inventories.weapons import Weapon
+from game_files.inventories.player_inventory import Inventory, WeaponAndArmorSlots
+from game_files.items.armor import Armor
+from game_files.items.items import Item
+from game_files.items.weapons import Weapon
 
 
 class InventoryAndActionSlotsMediator:
@@ -8,9 +9,7 @@ class InventoryAndActionSlotsMediator:
         inventory.list_all_items()
         weapon_and_armor_slots.view_equipped_items()
 
-    def hand_over_item_to_active_slot(
-        self, equipable_item: Item, player_inventory: Inventory, weapon_and_armor_slots: WeaponAndArmorSlots
-    ) -> None:
+    def hand_over_item_to_active_slot(self, equipable_item: Item, weapon_and_armor_slots: WeaponAndArmorSlots) -> None:
         if not isinstance(equipable_item, (Weapon, Armor)):
             print("You cannot equip it, only weapon and armor work")
             return
@@ -24,10 +23,6 @@ class InventoryAndActionSlotsMediator:
         if not (item_to_remove, (Weapon, Armor)):
             print("No such item equipped, try harder")
             return
-        if isinstance(item_to_remove, Weapon):
-            removed_item = weapon_and_armor_slots.discard_item(item_to_remove)
-            player_inventory.add_item(removed_item)
-        else:
-            removed_item = weapon_and_armor_slots.discard_item(item_to_remove)
-            player_inventory.add_item(removed_item)
+        removed_item = weapon_and_armor_slots.discard_item(item_to_remove)
+        player_inventory.add_item(removed_item)
         print(f"{item_to_remove} removed to the inventory")

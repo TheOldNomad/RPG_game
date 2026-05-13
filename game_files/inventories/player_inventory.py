@@ -1,8 +1,8 @@
-from collections.abc import ItemsView, Iterator
+from collections.abc import Iterator
 
-from game_files.items_and_inventories.armor import Armor, Boots, Breastplate, Gauntlets, Helmet, Trousers
-from game_files.items_and_inventories.items import AdvancedHealthPotion, HealthPotion, Item
-from game_files.items_and_inventories.weapons import Axe, OneHandedMainWeapon, OneHandedSecondaryWeapon, Sword, Weapon
+from game_files.items.armor import Armor, Boots, Breastplate, Gauntlets, Helmet, Trousers
+from game_files.items.potions import AdvancedHealthPotion, HealthPotion, Item
+from game_files.items.weapons import Axe, OneHandedMainWeapon, OneHandedSecondaryWeapon, Sword, Weapon
 
 
 class Inventory:
@@ -41,6 +41,7 @@ class Inventory:
         for current_item in self.player_inventory:
             print(current_item)
 
+
 class WeaponAndArmorSlots:
     def __init__(self) -> None:
         self.main_hand: OneHandedMainWeapon | None = None
@@ -54,32 +55,18 @@ class WeaponAndArmorSlots:
     def equip_item(self, item_to_equip: Weapon | Armor) -> None:
         match item_to_equip:
             case OneHandedMainWeapon():
-                item_to_remove = self.main_hand
-                self.main_hand = None
                 self.main_hand = item_to_equip
             case OneHandedSecondaryWeapon():
-                item_to_remove = self.secondary_hand
-                self.secondary_hand = None
                 self.secondary_hand = item_to_equip
             case Helmet():
-                item_to_remove = self.head
-                self.head = None
                 self.head = item_to_equip
             case Breastplate():
-                item_to_remove = self.torso
-                self.torso = None
                 self.torso = item_to_equip
             case Gauntlets():
-                item_to_remove = self.arms
-                self.arms = None
                 self.arms = item_to_equip
             case Trousers():
-                item_to_remove = self.legs
-                self.legs = None
                 self.legs = item_to_equip
             case Boots():
-                item_to_remove = self.feet
-                self.feet = None
                 self.feet = item_to_equip
             case _:
                 print("Wrong item type, dumbass, try again")
@@ -121,8 +108,9 @@ class WeaponAndArmorSlots:
             return None
         return currently_equipped_item.item_parameters
 
-    def view_all_equipped_items(self) -> str | Item | None:
-
+    def view_equipped_items(self) -> str | Weapon | Armor | None:
+        active_slots = WeaponAndArmorSlots()
+        active_slots.__dict__.items()
 
 
 # Константные переменные в питоне записываются полностью большими буквами, как в примере с

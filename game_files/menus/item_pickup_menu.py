@@ -1,5 +1,5 @@
-from game_files.items_and_inventories.items import Item
-from game_files.items_and_inventories.player_inventory import Inventory
+from game_files.inventories.player_inventory import Inventory
+from game_files.items.items import Item
 
 
 class ItemPickUpMenu:
