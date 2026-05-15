@@ -27,9 +27,12 @@ class InventoryMenu:
 
     def remove_item_from_active_slots(self, inventory: Inventory, weapon_and_armor_slots: WeaponAndArmorSlots) -> None:
         item_type_check = InventoryAndActionSlotsMediator()
-        item_to_remove = str(
+        slot_to_remove_item_from = str(
             input("Please, choose the part that you want to remove the item from (i.e. left hand/torso, etc.)")
         )
+        if slot_to_remove_item_from not in {"main_hand", "secondary_hand", "head", "torso", "arms", "legs", "feet"}:
+            print("No such slot, try harder, chief")
+        item_to_remove = getattr(item_type_check, slot_to_remove_item_from)
         item_type_check.get_item_from_active_slot(item_to_remove, inventory, weapon_and_armor_slots)
 
     def inventory_navigation(
