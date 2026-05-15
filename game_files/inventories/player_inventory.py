@@ -55,18 +55,32 @@ class WeaponAndArmorSlots:
     def equip_item(self, item_to_equip: Weapon | Armor) -> None:
         match item_to_equip:
             case OneHandedMainWeapon():
+                if self.main_hand is not None:
+                    self.discard_item(self.main_hand)
                 self.main_hand = item_to_equip
             case OneHandedSecondaryWeapon():
+                if self.secondary_hand is not None:
+                    self.discard_item(self.secondary_hand)
                 self.secondary_hand = item_to_equip
             case Helmet():
+                if self.head is not None:
+                    self.discard_item(self.head)
                 self.head = item_to_equip
             case Breastplate():
+                if self.torso is not None:
+                    self.discard_item(self.torso)
                 self.torso = item_to_equip
             case Gauntlets():
+                if self.arms is not None:
+                    self.discard_item(self.arms)
                 self.arms = item_to_equip
             case Trousers():
+                if self.legs is not None:
+                    self.discard_item(self.legs)
                 self.legs = item_to_equip
             case Boots():
+                if self.feet is not None:
+                    self.discard_item(self.feet)
                 self.feet = item_to_equip
             case _:
                 print("Wrong item type, dumbass, try again")
