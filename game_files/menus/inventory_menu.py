@@ -23,7 +23,7 @@ class InventoryMenu:
         elif player_command == "2":
             current_item.chosen_item_examination()
         else:
-            item_type_check.hand_over_item_to_active_slot(current_item, inventory, weapon_and_armor_slots)
+            item_type_check.hand_over_item_to_active_slot(current_item, weapon_and_armor_slots)
 
     def remove_item_from_active_slots(self, inventory: Inventory, weapon_and_armor_slots: WeaponAndArmorSlots) -> None:
         item_type_check = InventoryAndActionSlotsMediator()

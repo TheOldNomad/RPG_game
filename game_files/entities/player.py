@@ -1,8 +1,8 @@
 import random
 
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
-from game_files.items_and_inventories.inventory_slot_mediator import InventoryAndActionSlotsMediator
-from game_files.items_and_inventories.player_inventory import ArmorSlots, Inventory, WeaponSlots
+from game_files.inventories.inventory_slot_mediator import InventoryAndActionSlotsMediator
+from game_files.inventories.player_inventory import Inventory, WeaponAndArmorSlots
 
 
 class Player(DamageDealingEntity):
@@ -17,7 +17,6 @@ class Player(DamageDealingEntity):
         self.alive = True
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
-        self.armor_slots = ArmorSlots()
-        self.weapon_slots = WeaponSlots()
+        self.weapon_and_armor_slots = WeaponAndArmorSlots()
         self.inventory = Inventory()
         self.item_equipment_mechanic = InventoryAndActionSlotsMediator()

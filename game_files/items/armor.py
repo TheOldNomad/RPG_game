@@ -1,4 +1,4 @@
-from game_files.items_and_inventories.items import Item
+from game_files.items.items import Item
 
 
 class Armor(Item):

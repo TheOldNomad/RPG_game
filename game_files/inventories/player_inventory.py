@@ -125,7 +125,3 @@ class WeaponAndArmorSlots:
     def view_equipped_items(self) -> str | Weapon | Armor | None:
         active_slots = WeaponAndArmorSlots()
         active_slots.__dict__.items()
-
-
-# Константные переменные в питоне записываются полностью большими буквами, как в примере с
-# INITIAL_PLAYER_INVENTORY
