@@ -1,5 +1,6 @@
 from game_files.inventories.inventory_slot_mediator import InventoryAndActionSlotsMediator
-from game_files.inventories.player_inventory import Inventory, WeaponAndArmorSlots
+from game_files.inventories.player_inventory import inventory
+from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
 
 
 class InventoryMenu:

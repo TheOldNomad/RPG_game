@@ -1,4 +1,5 @@
-from game_files.inventories.player_inventory import Inventory, WeaponAndArmorSlots
+from game_files.inventories.player_inventory import Inventory
+from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
 from game_files.items.armor import Armor
 from game_files.items.items import Item
 from game_files.items.weapons import Weapon
