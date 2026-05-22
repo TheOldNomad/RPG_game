@@ -1,8 +1,7 @@
 from collections.abc import Iterator
 
-
 from game_files.items.potions import AdvancedHealthPotion, HealthPotion, Item
-from game_files.items.weapons import Axe, Sword, Weapon
+from game_files.items.weapons import Axe, Sword
 
 
 class Inventory:
