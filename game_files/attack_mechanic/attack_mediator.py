@@ -14,7 +14,7 @@ class AttackMediator:
         item_to_get_parameters_from: Weapon | Armor | None,
     ) -> None:
         active_weapon_damage_points = currently_equipped_weapons.get_item_parameters(item_to_get_parameters_from)
-        if active_weapon_damage_points is None:
+        if item_to_get_parameters_from is None:
             active_weapon_damage_points = 0
         damage_dealt_by_player = (player_character.damage + active_weapon_damage_points) / 100
         player_character.deal_damage(monster_list[attacked_monster_index], damage_dealt_by_player)
