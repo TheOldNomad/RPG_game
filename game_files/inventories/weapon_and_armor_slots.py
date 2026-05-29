@@ -76,11 +76,18 @@ class WeaponAndArmorSlots:
                 print("Wrong item type")
         return item_returned_to_inventory
 
-    def get_item_parameters(self, currently_equipped_item: Weapon | Armor | None) -> int | None:
-        if currently_equipped_item is None:
+    def get_weapon_parameters(self, currently_equipped_weapon: Weapon | None) -> int | None:
+        if currently_equipped_weapon is None:
             print("No weapon here. You must be really brave for going at monsters like that!")
+            return currently_equipped_weapon_points = 0
+        return currently_equipped_weapon_points = self.main_hand.item_parameters
+
+    def get_armor_parameters(self, currently_equipped_armor: Armor | None) -> int | None:
+        if currently_equipped_armor is None:
+            print("No armor here. You must be really brave for going at monsters like that!")
             return None
-        return currently_equipped_item.item_parameters
+        return currently_equipped_armor_points = sum([self.head.item_parameters, self.torso.item_parameters, self.arms.item_parameters, self.legs.item_parameters,
+            self.feet.item_parameters]) / 100
 
     def view_equipped_items(self) -> str | Weapon | Armor | None:
         active_slots = WeaponAndArmorSlots()
