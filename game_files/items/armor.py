@@ -1,3 +1,5 @@
+import random
+
 from game_files.items.items import Item
 
 
@@ -12,6 +14,7 @@ class Helmet(Armor):
         self.item_name = key_name
         self.item_description = "Made to protect that "
         self.slot_to_equip = "Head"
+        self.armor_points = random.randint(10, 20)
 
 
 class Breastplate(Armor):
@@ -20,6 +23,7 @@ class Breastplate(Armor):
         self.item_name = key_name
         self.item_description = "Made to protect that "
         self.slot_to_equip = "Torso"
+        self.armor_points = random.randint(40, 60)
 
 
 class Gauntlets(Armor):
@@ -28,6 +32,7 @@ class Gauntlets(Armor):
         self.item_name = key_name
         self.item_description = "Made to protect that "
         self.slot_to_equip = "Hands"
+        self.armor_points = random.randint(5, 10)
 
 
 class Trousers(Armor):
@@ -36,6 +41,7 @@ class Trousers(Armor):
         self.item_name = key_name
         self.item_description = "Made to protect that "
         self.slot_to_equip = "Legs"
+        self.armor_points = random.randint(20, 40)
 
 
 class Boots(Armor):
@@ -44,3 +50,4 @@ class Boots(Armor):
         self.item_name = key_name
         self.item_description = "Made to protect that "
         self.slot_to_equip = "Feet"
+        self.armor_points = random.randint(10, 15)
