@@ -1,4 +1,5 @@
 import random
+from typing import Self
 
 from game_files.entities.entity import Entity
 
@@ -18,5 +19,5 @@ class DamageDealingEntity(Entity):
             character_taking_damage.death(character_taking_damage)
 
     def healing(self, character_drinking_potion: Self) -> None:
-            character_drinking_potion.health_points = character_drinking_potion.health_points + self.health_regeneration
-            print("A sip from the rusty canteen restores your breath and fills you with a nice warmth")
+        character_drinking_potion.health_points = character_drinking_potion.health_points + self.health_regeneration
+        print("A sip from the rusty canteen restores your breath and fills you with a nice warmth")

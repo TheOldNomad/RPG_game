@@ -1,5 +1,6 @@
-from game_files.entities.player import Player
 from game_files.attack_mechanic.attack_mediator import AttackMediator
+from game_files.entities.player import Player
+
 
 class AttackMenu:
     def choose_target_to_attack(self, monster_list: list, player_character: Player) -> None:
@@ -19,4 +20,4 @@ class AttackMenu:
             if current_monster_index < 0 or current_monster_index >= len(monster_list):
                 print("This monster has already perished. Would you like to attack the other one?")
                 return
-            attack_mediator.compute_player_dealt_damage_to_mob(player_character, monster_list, current_monster_index, item_to_get_parameters_from)
+            attack_mediator.compute_player_dealt_damage_to_mob(player_character, monster_list, current_monster_index)

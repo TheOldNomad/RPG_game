@@ -4,7 +4,7 @@ from game_files.items.items import Item
 
 
 class Armor(Item):
-    armour_points: int
+    armor_points: int
     slot_to_equip: str
 
 
