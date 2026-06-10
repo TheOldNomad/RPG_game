@@ -18,3 +18,4 @@ class AttackMediator:
         monster_dealt_damage = attacking_monster.weapon_and_armor_slots.get_weapon_parameters()
         player_equipped_armor_points = player_character.weapon_and_armor_slots.get_armor_parameters()
         monster_dealt_damage = (attacking_monster.damage + monster_dealt_damage) * player_equipped_armor_points
+        attacking_monster.deal_damage(player_character, monster_dealt_damage)
