@@ -1,12 +1,13 @@
+from menus.player_attack_menu import PlayerAttackMenu
+
 from game_files.entities.player import Player
-from game_files.menus.attack_menu import AttackMenu
 from game_files.menus.inventory_menu import InventoryMenu
 
 
 class PlayersActionMenu:
     def introductory_choice(self, monster_list: list, active_player: Player) -> None:
         inventory_interface = InventoryMenu()
-        attack_menu = AttackMenu()
+        attack_menu = PlayerAttackMenu()
         player_choice = input("""You see a suspiciously looking cave. What will be your actions?" \
             "1 - open the inventory" \
             "2 - enter the cave""")

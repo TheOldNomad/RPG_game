@@ -26,7 +26,9 @@ class InventoryMenu:
         else:
             item_type_check.hand_over_item_to_active_slot(current_item, weapon_and_armor_slots)
 
-    def remove_item_from_active_slots(self, inventory: Inventory, weapon_and_armor_slots: WeaponAndArmorSlots) -> None:
+    def move_equipped_item_back_to_inventory(
+        self, inventory: Inventory, weapon_and_armor_slots: WeaponAndArmorSlots
+    ) -> None:
         item_type_check = InventoryAndActionSlotsMediator()
         slot_to_remove_item_from = str(
             input("Please, choose the part that you want to remove the item from (i.e. left hand/torso, etc.)")
@@ -53,6 +55,6 @@ class InventoryMenu:
             elif user_input == "3":
                 return
             elif user_input == "2":
-                self.remove_item_from_active_slots(player_inventory, weapon_and_armor_slots)
+                self.move_equipped_item_back_to_inventory(player_inventory, weapon_and_armor_slots)
             else:
                 self.select_item(player_inventory, weapon_and_armor_slots)

@@ -2,7 +2,7 @@ from game_files.attack_mechanic.attack_mediator import AttackMediator
 from game_files.entities.player import Player
 
 
-class AttackMenu:
+class PlayerAttackMenu:
     def choose_target_to_attack(self, monster_list: list, player_character: Player) -> None:
         attack_mediator = AttackMediator()
         user_input = input("You see monsters, what are your actions? 1 - attack one of the monsters 2 - run away")

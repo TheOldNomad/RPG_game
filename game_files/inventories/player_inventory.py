@@ -39,3 +39,7 @@ class Inventory:
             return
         for current_item in self.player_inventory:
             print(current_item)
+
+    def get_health_potion_parameters(self) -> int:
+        if HealthPotion not in self.player_inventory:
+        return
