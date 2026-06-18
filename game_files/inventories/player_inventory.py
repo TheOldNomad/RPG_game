@@ -1,6 +1,7 @@
 from collections.abc import Iterator
 
-from game_files.items.potions import AdvancedHealthPotion, HealthPotion, Item
+from game_files.items.items import Item
+from game_files.items.potions import AdvancedHealthPotion, HealthPotion
 from game_files.items.weapons import Axe, Sword
 
 
@@ -40,6 +41,6 @@ class Inventory:
         for current_item in self.player_inventory:
             print(current_item)
 
-    def get_health_potion_parameters(self) -> int:
-        if HealthPotion not in self.player_inventory:
-        return
+    def get_health_potion_parameters(self, potion_to_use: int) -> int:
+        potion_to_drink = self.player_inventory[potion_to_use]
+        return potion_to_drink.parameters
