@@ -1,12 +1,14 @@
 from game_files.inventories.inventory_slot_mediator import InventoryAndActionSlotsMediator
 from game_files.inventories.player_inventory import Inventory
 from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
+from game_files.menus.item_usability_interface import ItemUsabilityInterface
 
 
 class InventoryMenu:
     def select_item(self, inventory: Inventory, weapon_and_armor_slots: WeaponAndArmorSlots) -> None:
         item_index = int(input("Please, type the item's index"))
         item_type_check = InventoryAndActionSlotsMediator()
+        item_usability_interface = ItemUsabilityInterface()
         current_item = inventory.choose_item(item_index)
         if not current_item:
             print("Item not found, try harder")
@@ -15,12 +17,15 @@ class InventoryMenu:
         player_command = input(f"""You have picked a {current_item} What would you like to do with it?
     1 - equip the item
     2 - examine the item
-    3 - return to the main inventory
+    3 - use the item
+    4 - return to the main inventory
     """)
-        if player_command not in {"1", "2", "3"}:
+        if player_command not in {"1", "2", "3", "4"}:
             print("No such command, try again, dumbass")
-        elif player_command == "3":
+        elif player_command == "4":
             return
+        elif player_command == "3":
+            item_usability_interface.use_item(current_item, item_index)
         elif player_command == "2":
             current_item.chosen_item_examination()
         else:

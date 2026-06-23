@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 from game_files.items.usable_item import UsableItem
+from game_files.entities.damage_dealing_entity import DamageDealingEntity
 
 
 class Potion(UsableItem):
@@ -11,7 +12,7 @@ class Potion(UsableItem):
         pass
 
     @abstractmethod
-    def use_item(self) -> None:
+    def item_usability(self, character_to_use_item: DamageDealingEntity) -> None:
         pass
 
 
@@ -25,7 +26,7 @@ class HealthPotion(Potion):
         )
         self.item_parameters = self.health_restoration = 30
 
-    def use_item(self) -> None:
+    def item_usability(self, character_to_use_item: DamageDealingEntity) -> None:
         print("A sip from the rusty canteen restores your breath and fills you with a nice warmth")
 
 
@@ -39,7 +40,7 @@ class AdvancedHealthPotion(HealthPotion):
         )
         self.item_parameters = self.health_restoration = 50
 
-    def use_item(self) -> None:
+    def item_usability(self, character_to_use_item: DamageDealingEntity) -> None:
         print(
             "A sip from the rusty canteen restores your breath and fills you with a nice warmth."
             "You feel invincible for a second"

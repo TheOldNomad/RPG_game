@@ -41,6 +41,5 @@ class Inventory:
         for current_item in self.player_inventory:
             print(current_item)
 
-    def get_health_potion_parameters(self, potion_to_use: int) -> int:
-        potion_to_drink = self.player_inventory[potion_to_use]
-        return potion_to_drink.parameters
+    def get_health_potion_parameters(self, potion_to_use: HealthPotion) -> int:
+        return potion_to_use.parameters
