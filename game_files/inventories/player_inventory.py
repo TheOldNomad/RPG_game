@@ -42,4 +42,4 @@ class Inventory:
             print(current_item)
 
     def get_health_potion_parameters(self, potion_to_use: HealthPotion) -> int:
-        return potion_to_use.parameters
+        return potion_to_use.item_parameters

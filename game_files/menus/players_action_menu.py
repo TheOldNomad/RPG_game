@@ -15,8 +15,7 @@ class PlayersActionMenu:
             print("No such option exists, try again, smartass")
         elif player_choice == "1":
             inventory_interface.inventory_navigation(
-                active_player.inventory,
-                active_player.weapon_and_armor_slots,
+                active_player,
                 active_player.item_equipment_mechanic,
             )
         else:
