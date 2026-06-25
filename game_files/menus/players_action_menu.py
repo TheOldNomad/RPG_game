@@ -1,7 +1,6 @@
-from menus.player_attack_menu import PlayerAttackMenu
-
 from game_files.entities.player import Player
 from game_files.menus.inventory_menu import InventoryMenu
+from game_files.menus.player_attack_menu import PlayerAttackMenu
 
 
 class PlayersActionMenu:
@@ -16,7 +15,6 @@ class PlayersActionMenu:
         elif player_choice == "1":
             inventory_interface.inventory_navigation(
                 active_player,
-                active_player.item_equipment_mechanic,
             )
         else:
             attack_menu.choose_target_to_attack(monster_list, active_player)

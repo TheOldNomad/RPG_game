@@ -1,14 +1,12 @@
-from menus.item_usibility_interface import ItemUsibilityInterface
-
 from game_files.entities.player import Player
 from game_files.inventories.inventory_slot_mediator import InventoryAndActionSlotsMediator
 from game_files.items.usable_item import UsableItem
+from game_files.menus.item_usibility_interface import ItemUsibilityInterface
 
 
 class InventoryMenu:
-    def select_item(self, player_character: Player) -> None:
+    def select_item(self, player_character: Player, item_equipment_mechanic: InventoryAndActionSlotsMediator) -> None:
         item_index = int(input("Please, type the item's index"))
-        item_type_check = InventoryAndActionSlotsMediator()
         item_usability_interface = ItemUsibilityInterface()
         current_item = player_character.inventory.choose_item(item_index)
         if not current_item:
@@ -33,23 +31,23 @@ class InventoryMenu:
         elif player_command == "2":
             current_item.chosen_item_examination()
         else:
-            item_type_check.hand_over_item_to_active_slot(current_item, player_character)
+            item_equipment_mechanic.hand_over_item_to_active_slot(current_item, player_character)
 
-    def move_equipped_item_back_to_inventory(self, player_character: Player) -> None:
-        item_type_check = InventoryAndActionSlotsMediator()
+    def move_equipped_item_back_to_inventory(
+        self, player_character: Player, item_equipment_mechanic: InventoryAndActionSlotsMediator
+    ) -> None:
         slot_to_remove_item_from = str(
             input("Please, choose the part that you want to remove the item from (i.e. left hand/torso, etc.)")
         )
         if slot_to_remove_item_from not in {"main_hand", "secondary_hand", "head", "torso", "arms", "legs", "feet"}:
             print("No such slot, try harder, chief")
-        item_to_remove = getattr(item_type_check, slot_to_remove_item_from)
-        item_type_check.get_item_from_active_slot(item_to_remove, player_character)
+        item_to_remove = getattr(item_equipment_mechanic, slot_to_remove_item_from)
+        item_equipment_mechanic.get_item_from_active_slot(item_to_remove, player_character)
 
-    def inventory_navigation(
-        self, player_character: Player, inventory_mediator: InventoryAndActionSlotsMediator
-    ) -> None:
+    def inventory_navigation(self, player_character: Player) -> None:
+        item_equipment_mechanic = InventoryAndActionSlotsMediator()
         while True:
-            inventory_mediator.list_all_items(player_character)
+            item_equipment_mechanic.list_all_items(player_character)
             user_input = input(
                 "These are all the items in the inventory. What would you like to do next? "
                 "1 - select one of the items, 2 - move an equipped item back to inventory, 3 - return to the main game"
@@ -59,6 +57,6 @@ class InventoryMenu:
             elif user_input == "3":
                 return
             elif user_input == "2":
-                self.move_equipped_item_back_to_inventory(player_character)
+                self.move_equipped_item_back_to_inventory(player_character, item_equipment_mechanic)
             else:
-                self.select_item(player_character)
+                self.select_item(player_character, item_equipment_mechanic)

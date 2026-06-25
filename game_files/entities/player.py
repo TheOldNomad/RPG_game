@@ -1,7 +1,6 @@
 import random
 
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
-from game_files.inventories.inventory_slot_mediator import InventoryAndActionSlotsMediator
 from game_files.inventories.player_inventory import Inventory
 from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
 
@@ -20,4 +19,3 @@ class Player(DamageDealingEntity):
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
         self.weapon_and_armor_slots = WeaponAndArmorSlots()
         self.inventory = Inventory()
-        self.item_equipment_mechanic = InventoryAndActionSlotsMediator()
