@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
-from game_files.items.usable_item import UsableItem
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
+from game_files.items.usable_item import UsableItem
 
 
 class Potion(UsableItem):

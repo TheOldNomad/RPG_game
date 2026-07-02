@@ -7,11 +7,15 @@ from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
 
 class Player(DamageDealingEntity):
     rpg_class: str
+    current_level: int
+    experience_points: int
 
     def __init__(self, given_name: str, given_rpg_class: str):
         self.name = given_name
         self.rpg_class = given_rpg_class
+        self.current_level = 1
         self.health_points = 60
+        self.experience_points = 0
         self.damage = random.randint(45, 90)
         self.health_regeneration = 30
         self.alive = True
@@ -19,3 +23,9 @@ class Player(DamageDealingEntity):
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
         self.weapon_and_armor_slots = WeaponAndArmorSlots()
         self.inventory = Inventory()
+
+    def see_player_state(self) -> None:
+        print(
+            f"{self.name}\n {self.rpg_class}\n Level {self.current_level}\n Experience {self.experience_points}/1000\n \
+              Health points {self.health_points}"
+        )

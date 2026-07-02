@@ -8,6 +8,7 @@ class InventoryAndActionSlotsMediator:
     def list_all_items(self, player_character: Player) -> None:
         player_character.inventory.list_all_items()
         player_character.weapon_and_armor_slots.view_equipped_items()
+        player_character.see_player_state()
 
     def hand_over_item_to_active_slot(self, equipable_item: Item, player_character: Player) -> None:
         if not isinstance(equipable_item, (Weapon, Armor)):
