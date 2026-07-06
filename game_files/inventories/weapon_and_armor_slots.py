@@ -86,5 +86,4 @@ class WeaponAndArmorSlots:
         return sum(armor_part.armor_points for armor_part in all_equipped_armor if armor_part is not None) / 100
 
     def view_equipped_items(self) -> str | Weapon | Armor | None:
-        active_slots = WeaponAndArmorSlots()
-        active_slots.__dict__.items()
+        print(f"{self.__dict__.items()}")
