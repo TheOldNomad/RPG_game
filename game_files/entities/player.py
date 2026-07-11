@@ -41,3 +41,5 @@ class Player(DamageDealingEntity):
         self.current_level += 1
         self.minimal_damage += 5
         self.maximal_damage += 5
+        if self.current_level / 2:
+            self.skill_tree.view_relevant_skill_tree(self)

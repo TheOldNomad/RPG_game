@@ -1,14 +1,8 @@
-from game_files.entities.player import Player
+from game_files.entities.damage_dealing_entity import DamageDealingEntity
 from game_files.items.potions import HealthPotion
 
 
 class HealingMediator:
-    def calculate_health_points_to_regenerate(self, player_character: Player, potion_to_use: HealthPotion) -> None:
-        hp_to_regenerate = player_character.inventory.get_health_potion_parameters(potion_to_use)
-        player_character.healing(player_character, hp_to_regenerate)
-
     def use_health_potion(
-        self, player_character: Player, potion_to_use: HealthPotion, potion_to_use_index: int
-    ) -> None:
-        self.calculate_health_points_to_regenerate(player_character, potion_to_use)
-        player_character.inventory.discard_item(potion_to_use_index)
+        self, entity_to_use_potion: DamageDealingEntity, potion_to_use: HealthPotion, hp_to_regenerate: int) -> None:
+        entity_to_use_potion.healing(entity_to_use_potion, hp_to_regenerate)

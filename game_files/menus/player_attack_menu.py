@@ -1,10 +1,9 @@
-from game_files.attack_mechanic.attack_mediator import AttackMediator
+from game_files.mediator_module.mediator_module import attack_mediator
 from game_files.entities.player import Player
 
 
 class PlayerAttackMenu:
     def choose_target_to_attack(self, monster_list: list, player_character: Player) -> None:
-        attack_mediator = AttackMediator()
         while player_character.alive:
             user_input = input("You see monsters, what are your actions? 1 - attack one of the monsters 2 - run away")
             if user_input not in {"1", "2"}:

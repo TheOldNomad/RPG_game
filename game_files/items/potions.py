@@ -2,6 +2,7 @@ from abc import abstractmethod
 
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
 from game_files.items.usable_item import UsableItem
+from game_files.mediator_module.mediator_module import healing_mediator
 
 
 class Potion(UsableItem):
@@ -27,6 +28,7 @@ class HealthPotion(Potion):
         self.item_parameters = self.health_restoration = 30
 
     def item_usability(self, character_to_use_item: DamageDealingEntity) -> None:
+        healing_mediator.use_health_potion(character_to_use_item, self, self.item_parameters)
         print("A sip from the rusty canteen restores your breath and fills you with a nice warmth")
 
 
@@ -40,7 +42,8 @@ class AdvancedHealthPotion(HealthPotion):
         )
         self.item_parameters = self.health_restoration = 50
 
-    def item_usability(self, character_to_use_item: DamageDealingEntity) -> None:
+    def item_usability(self, character_to_use_item: DamageDealingEntit, self, self.item_parameters) -> None:
+        healing_mediator.use_health_potion()
         print(
             "A sip from the rusty canteen restores your breath and fills you with a nice warmth."
             "You feel invincible for a second"
