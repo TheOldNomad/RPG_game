@@ -1,9 +1,9 @@
-from game_files.inventories.player_inventory import Inventory
+from game_files.entities.player import Player
 from game_files.items.items import Item
 
 
 class ItemPickUpMenu:
-    def choose_item_to_pick_up(self, encountered_items_list: list, player_inventory: Inventory) -> None:
+    def choose_item_to_pick_up(self, encountered_items_list: list, player: Player) -> None:
         items_to_add = []
         user_choice = input(
             f"""Here are the items -"""
@@ -38,10 +38,10 @@ class ItemPickUpMenu:
             print("No such option. Try again, dumbass")
             return
 
-    def hand_one_item_to_inventory(self, item_to_add: Item, player_inventory: Inventory) -> None:
-        player_inventory.add_item(item_to_add)
+    def hand_one_item_to_inventory(self, item_to_add: Item, player: Player) -> None:
+        player.inventory.add_item(item_to_add)
         print(f"{item_to_add} successfully added to inventory!")
 
-    def hand_multiple_items_to_inventory(self, items_to_add: list, player_inventory: Inventory) -> None:
-        player_inventory.add_multiple_items(items_to_add)
+    def hand_multiple_items_to_inventory(self, items_to_add: list, player: Player) -> None:
+        player.inventory.add_multiple_items(items_to_add)
         print(f"{items_to_add} successfully added to inventory!")
