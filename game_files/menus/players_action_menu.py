@@ -1,12 +1,9 @@
 from game_files.entities.player import Player
-from game_files.menus.inventory_menu import InventoryMenu
-from game_files.menus.player_attack_menu import PlayerAttackMenu
+from game_files.modules.mediator_and_menu_module import inventory_menu, player_attack_menu
 
 
 class PlayersActionMenu:
     def introductory_choice(self, monster_list: list, active_player: Player) -> None:
-        inventory_interface = InventoryMenu()
-        attack_menu = PlayerAttackMenu()
         while active_player.alive:
             player_choice = input("""You see a suspiciously looking cave. What will be your actions?" \
                 "1 - open the inventory" \
@@ -14,10 +11,10 @@ class PlayersActionMenu:
             if player_choice not in {"1", "2"}:
                 print("No such option exists, try again, smartass")
             elif player_choice == "1":
-                inventory_interface.inventory_navigation(
+                inventory_menu.inventory_navigation(
                     active_player,
                 )
                 continue
             else:
-                attack_menu.choose_target_to_attack(monster_list, active_player)
+                player_attack_menu.choose_target_to_attack(monster_list, active_player)
                 return

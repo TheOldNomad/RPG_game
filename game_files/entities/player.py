@@ -3,6 +3,7 @@ import random
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
 from game_files.inventories.player_inventory import Inventory
 from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
+from game_files.modules.mediator_and_menu_module import skill_tree_menu
 
 
 class Player(DamageDealingEntity):
@@ -42,4 +43,4 @@ class Player(DamageDealingEntity):
         self.minimal_damage += 5
         self.maximal_damage += 5
         if self.current_level / 2:
-            self.skill_tree.view_relevant_skill_tree(self)
+            skill_tree_menu.pick_new_skill(self)

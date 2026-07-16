@@ -1,5 +1,5 @@
 from game_files.entities.player import Player
-from game_files.mediator_module.mediator_module import inventory_slot_mediator
+from game_files.modules.mediator_and_menu_module import inventory_slot_mediator
 from game_files.items.usable_item import UsableItem
 
 
