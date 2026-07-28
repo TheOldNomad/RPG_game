@@ -1,12 +1,12 @@
 import random
 from typing import Self
+from abc import ABC
 
 
-class Entity:
+class Entity(ABC):
     name: str
     health_points: int
     damage: int
-    health_regeneration: int
     damage_stockphrases: list[str]
     death_stockphrases: list[str]
     alive: bool

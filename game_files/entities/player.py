@@ -15,11 +15,7 @@ class Player(DamageDealingEntity):
         self.name = given_name
         self.rpg_class = given_rpg_class
         self.current_level = 1
-        self.health_points = 60
         self.experience_points = 0
-        self.minimal_damage = 45
-        self.maximal_damage = 90
-        self.general_damage = random.randint(self.minimal_damage, self.maximal_damage)
         self.alive = True
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
