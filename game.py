@@ -1,6 +1,6 @@
 from game_files.entities.monster import Monster
 from game_files.entities.player import Player
-from game_files.modules.mediator_and_menu_module import players_action_menu, player_healing_menu, monster_attack_menu
+from game_files.modules.mediator_and_menu_module import monster_attack_menu, player_healing_menu, players_action_menu
 
 if __name__ == "__main__":
     encountered_mob = Monster("stalnoye dildo Damirchika")
@@ -14,5 +14,6 @@ if __name__ == "__main__":
         for current_monster in monster_list:
             monster_attack_menu.register_monster_damage(active_player, current_monster)
         if not encountered_mob.alive and not encountered_mob2.alive:
+            active_player.gain_experience_points(encountered_mob.xp_gained_for_kill)
             print("You have successfully cleared out a dungeon! Now go and get yourself a job, you nerd")
             break

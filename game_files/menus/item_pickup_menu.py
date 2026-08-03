@@ -28,12 +28,12 @@ class ItemPickUpMenu:
                 print(item_choice_menu_indexes)
                 for current_index in item_choice_menu_indexes:
                     items_to_add.extend(encountered_items_list.pop(current_index))
-                    self.hand_multiple_items_to_inventory(items_to_add, player_inventory)
+                    self.hand_multiple_items_to_inventory(items_to_add, player)
                 return
         if user_choice == "1":
             chosen_item_index = int(input("Enter the indexes of the item you would like to pick up"))
             item_to_add = encountered_items_list[chosen_item_index]
-            self.hand_one_item_to_inventory(item_to_add, player_inventory)
+            self.hand_one_item_to_inventory(item_to_add, player)
         else:
             print("No such option. Try again, dumbass")
             return

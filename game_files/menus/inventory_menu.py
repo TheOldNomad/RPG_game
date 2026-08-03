@@ -1,6 +1,6 @@
 from game_files.entities.player import Player
-from game_files.modules.mediator_and_menu_module import inventory_slot_mediator
 from game_files.items.usable_item import UsableItem
+from game_files.modules.mediator_and_menu_module import inventory_slot_mediator
 
 
 class InventoryMenu:
@@ -24,7 +24,7 @@ class InventoryMenu:
             if not isinstance(current_item, UsableItem):
                 print("Cannot use this item, try again, chief")
                 return
-            item_usability_interface.use_item(player_character, current_item, item_index)
+            current_item.item_usability(player_character)
             player_character.inventory.discard_item(item_index)
         elif player_command == "2":
             current_item.chosen_item_examination()
@@ -52,6 +52,6 @@ class InventoryMenu:
             elif user_input == "3":
                 return
             elif user_input == "2":
-                self.move_equipped_item_back_to_inventory(player_character, item_equipment_mechanic)
+                self.move_equipped_item_back_to_inventory(player_character)
             else:
-                self.select_item(player_character, item_equipment_mechanic)
+                self.select_item(player_character)

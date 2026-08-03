@@ -19,6 +19,7 @@ class Player(DamageDealingEntity):
         self.alive = True
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
+        self.acquired_skills = []
         self.weapon_and_armor_slots = WeaponAndArmorSlots()
         self.inventory = Inventory()
 
