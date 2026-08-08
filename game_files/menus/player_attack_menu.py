@@ -1,5 +1,6 @@
+from modules.mediator_module import attack_mediator
+
 from game_files.entities.player import Player
-from game_files.modules.mediator_and_menu_module import attack_mediator
 
 
 class PlayerAttackMenu:

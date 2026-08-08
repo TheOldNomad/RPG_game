@@ -1,7 +1,8 @@
 import random
 
+from player_skill_system.class_skill_trees.bard_skill_tree import BardSkillTree
+
 from game_files.entities.player import Player
-from game_files.player_skill_system.bard_skill_tree import BardSkillTree
 
 
 class BardPlayer(Player):

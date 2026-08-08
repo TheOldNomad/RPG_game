@@ -2,7 +2,7 @@ from abc import abstractmethod
 
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
 from game_files.items.usable_item import UsableItem
-from game_files.modules.mediator_and_menu_module import healing_mediator
+from game_files.modules.mediator_module import healing_mediator
 
 
 class Potion(UsableItem):

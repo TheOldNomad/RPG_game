@@ -1,5 +1,6 @@
+from modules.menu_module import inventory_menu
+
 from game_files.entities.player import Player
-from game_files.modules.mediator_and_menu_module import inventory_menu
 
 
 class PlayerHealingMenu:

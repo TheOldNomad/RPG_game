@@ -1,7 +1,8 @@
 import random
 
+from player_skill_system.class_skill_trees.thief_skill_tree import ThiefSkillTree
+
 from game_files.entities.player import Player
-from game_files.player_skill_system.thief_skill_tree import ThiefSkillTree
 
 
 class ThiefPlayer(Player):

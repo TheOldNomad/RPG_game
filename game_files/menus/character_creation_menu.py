@@ -1,5 +1,3 @@
-
-
 class CharacterCreationMenu:
     def create_new_character(self) -> None:
         character_name = input("Please, choose the name of your character")
