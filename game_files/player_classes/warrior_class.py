@@ -11,5 +11,11 @@ class WarriorPlayer(Player):
         self.health_points = 60
         self.minimal_damage = 45
         self.maximal_damage = 90
+        self.strength = 7
+        self.magic = 3
+        self.endurance = 6
+        self.intelligence = 4
+        self.perception = 5
+        self.dexterity = 5
         self.general_damage = random.randint(self.minimal_damage, self.maximal_damage)
         self.skill_tree = WarriorSkillTree()
