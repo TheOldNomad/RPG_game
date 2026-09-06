@@ -1,6 +1,8 @@
+from game_files.attack_mechanic import monster_attack_menu
 from game_files.entities.monster import Monster
 from game_files.entities.player import Player
-from game_files.modules.menu_module import monster_attack_menu, player_healing_menu, players_action_menu
+from game_files.healing_mechanic import player_healing_menu
+from game_files.menus import players_action_menu
 
 if __name__ == "__main__":
     encountered_mob = Monster("stalnoye dildo Damirchika")
