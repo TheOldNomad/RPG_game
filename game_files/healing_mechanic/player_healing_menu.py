@@ -1,6 +1,5 @@
-from inventories import inventory_menu
-
 from game_files.entities.player import Player
+from game_files.inventories import inventory_menu
 
 
 def take_health_potion(player_character: Player) -> None:

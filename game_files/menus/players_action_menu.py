@@ -1,7 +1,6 @@
-from attack_mechanic import player_attack_menu
-from inventories import inventory_menu
-
+from game_files.attack_mechanic import player_attack_menu
 from game_files.entities.player import Player
+from game_files.inventories import inventory_menu
 
 
 def introductory_choice(monster_list: list, active_player: Player) -> None:
