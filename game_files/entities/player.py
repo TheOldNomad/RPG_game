@@ -39,3 +39,5 @@ class Player(DamageDealingEntity):
         self.maximal_damage += 5
         if self.current_level / 2:
             skill_tree_menu.pick_new_skill()
+
+#убрать skill_tree_menu, добавить вызов метода level_up у дочерних классов через super.init, с вызовом релевантного skill_tree_menu
