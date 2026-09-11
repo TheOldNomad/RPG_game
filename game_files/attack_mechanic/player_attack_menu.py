@@ -4,7 +4,7 @@ from game_files.entities.player import Player
 
 def choose_target_to_attack(monster_list: list, player_character: Player) -> None:
     while player_character.alive:
-        user_input = input("You see monsters, what are your actions? 1 - attack one of the monsters 2 - run away")
+        user_input = input("You see monsters, what are your actions?\n 1 - attack one of the monsters\n 2 - run away\n")
         if user_input not in {"1", "2"}:
             print("Wrong option, imbecile, try again")
         elif user_input == "2":

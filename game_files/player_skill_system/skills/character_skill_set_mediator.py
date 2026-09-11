@@ -1,8 +1,13 @@
-from game_files.player_skill_system.skills.bard_skill_tree_menu import bard_skill_tree_menu
-from game_files.player_skill_system.skills.cleric_skill_tree_menu import cleric_skill_tree_menu
-from game_files.player_skill_system.skills.mage_skill_tree_menu import mage_skill_tree_menu
-from game_files.player_skill_system.skills.thief_skill_tree_menu import thief_skill_tree_menu
-from game_files.player_skill_system.skills.warrior_skill_tree_menu import warrior_skill_tree_menu
+from game_files.player_classes.bard_class import BardPlayer
+from game_files.player_classes.cleric_class import ClericPlayer
+from game_files.player_classes.mage_class import MagePlayer
+from game_files.player_classes.thief_class import ThiefPlayer
+from game_files.player_classes.warrior_class import WarriorPlayer
+from game_files.player_skill_system.skills.bard_skills import bard_skill_tree_menu
+from game_files.player_skill_system.skills.cleric_skills import cleric_skill_tree_menu
+from game_files.player_skill_system.skills.mage_skills import mage_skill_tree_menu
+from game_files.player_skill_system.skills.thief_skills import thief_skill_tree_menu
+from game_files.player_skill_system.skills.warrior_skills import warrior_skill_tree_menu
 
 
 def match_character_class(character_class: str) -> None:
