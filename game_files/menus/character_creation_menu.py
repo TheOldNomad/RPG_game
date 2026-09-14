@@ -1,4 +1,6 @@
 from game_files.player_skill_system.skills.character_skill_set_mediator import character_skill_set_mediator
+from game_files.player_skill_system.character_perks.perk_menu import perk_menu
+
 
 def create_new_character() -> None:
     character_name = input("Please, choose the name of your character")
@@ -9,4 +11,6 @@ def create_new_character() -> None:
     4 - Bard\n
     5 - Cleric""")
     character_skill_set_mediator.match_character_class(character_class)
+    perk_menu.acquire_perk()
+
 
