@@ -5,11 +5,12 @@ from game_files.inventories import inventory_menu
 
 def introductory_choice(monster_list: list, active_player: Player) -> None:
     while active_player.alive:
-        player_choice = input(
+        print(
             "You see a suspiciously looking cave. What will be your actions?\n"
             "1 - open the inventory\n"
             "2 - enter the cave\n"
         )
+        player_choice = input()
         if player_choice not in {"1", "2"}:
             print("No such option exists, try again, smartass")
         elif player_choice == "1":

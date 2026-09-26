@@ -1,7 +1,7 @@
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
 from game_files.inventories.player_inventory import Inventory
 from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
-from game_files.player_skill_system.skills import skill_tree_menu
+from game_files.player_skill_system.skills import skill_tree_menu, skill_tree_template
 
 
 class Player(DamageDealingEntity):
@@ -14,6 +14,8 @@ class Player(DamageDealingEntity):
         self.rpg_class = given_rpg_class
         self.current_level = 1
         self.experience_points = 0
+        self.health_points = 0
+        self.damage_points = 0
         self.alive = True
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
@@ -21,6 +23,7 @@ class Player(DamageDealingEntity):
         self.chosen_perk = None
         self.weapon_and_armor_slots = WeaponAndArmorSlots()
         self.inventory = Inventory()
+        self.skill_tree = skill_tree_template.SkillTreeTemplate()
 
     def see_player_state(self) -> None:
         print(
@@ -38,7 +41,9 @@ class Player(DamageDealingEntity):
         self.current_level += 1
         self.minimal_damage += 5
         self.maximal_damage += 5
-        if self.current_level / 2:
-            skill_tree_menu.pick_new_skill()
+        skill_tree_menu.pick_new_skill(self)
 
-#убрать skill_tree_menu, добавить вызов метода level_up у дочерних классов через super.init, с вызовом релевантного skill_tree_menu
+
+# убрать skill_tree_menu, добавить вызов метода level_up у дочерних классов через super.init, с вызовом релевантного skill_tree_menu
+# if self.current_level / 2:
+# skill_tree_menu.pick_new_skill()

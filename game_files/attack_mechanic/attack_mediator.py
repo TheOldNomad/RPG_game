@@ -8,7 +8,7 @@ def compute_player_dealt_damage_to_mob(
     attacked_monster = monster_list[attacked_monster_index]
     active_weapon_damage_points = player_character.weapon_and_armor_slots.get_weapon_parameters()
     monster_defense_points = attacked_monster.weapon_and_armor_slots.get_armor_parameters()
-    damage_dealt_by_player = (player_character.damage + active_weapon_damage_points) * monster_defense_points
+    damage_dealt_by_player = (player_character.damage_points + active_weapon_damage_points) * monster_defense_points
     player_character.deal_damage(monster_list[attacked_monster_index], damage_dealt_by_player)
     if not monster_list[attacked_monster_index].alive:
         monster_list.pop(attacked_monster_index)

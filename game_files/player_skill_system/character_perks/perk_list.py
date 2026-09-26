@@ -1,5 +1,6 @@
-from game_files.player_skill_system.character_perks.perk_module import perk_module
 from game_files.entities.player import Player
+from game_files.player_skill_system.character_perks import perk_module
+from game_files.player_skill_system.character_perks.perk import Perk
 
 
 class PerkList:
