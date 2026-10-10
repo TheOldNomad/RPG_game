@@ -24,6 +24,13 @@ class Player(DamageDealingEntity):
         self.experience_points = 0
         self.health_points = 0
         self.damage_points = 0
+        self.stat_change_points = 0
+        self.strength = 0
+        self.magic = 0
+        self.endurance = 0
+        self.intelligence = 0
+        self.perception = 0
+        self.dexterity = 0
         self.alive = True
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
@@ -38,12 +45,25 @@ class Player(DamageDealingEntity):
             f"{self.name}\n {self.rpg_class}\n Level {self.current_level}\n Experience {self.experience_points}/1000\n \
               Health points {self.health_points}"
         )
+    
+    def see_player_stats(self) -> None:
+        print(f"{self.strength}\n
+        f"{self.magic}\n
+        f"{self.endurance}\n
+        f"{self.intelligence}\n
+        f"{self.perception}\n
+        f"{self.dexterity}\n
+        )
 
     def gain_experience_points(self, gained_xp: int) -> None:
         self.experience_points += gained_xp
         if self.experience_points >= 1000:
             self.experience_points -= 1000
             self.level_up()
+
+    def change_stats(self) -> None:
+        self.stat_change_points += 3
+
 
     def level_up(self) -> None:
         self.current_level += 1

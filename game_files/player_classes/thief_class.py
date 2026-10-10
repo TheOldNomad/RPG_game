@@ -11,4 +11,10 @@ class ThiefPlayer(Player):
         self.minimal_damage = 35
         self.maximal_damage = 75
         self.general_damage = random.randint(self.minimal_damage, self.maximal_damage)
+        self.strength = 4
+        self.magic = 4
+        self.endurance = 7
+        self.intelligence = 6
+        self.perception = 8
+        self.dexterity = 7
         self.skill_tree = ThiefSkillTree()

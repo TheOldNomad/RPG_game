@@ -11,4 +11,10 @@ class MagePlayer(Player):
         self.minimal_damage = 40
         self.maximal_damage = 80
         self.general_damage = random.randint(self.minimal_damage, self.maximal_damage)
+        self.strength = 3
+        self.magic = 7
+        self.endurance = 4
+        self.intelligence = 8
+        self.perception = 7
+        self.dexterity = 4
         self.skill_tree = MageSkillTree()
