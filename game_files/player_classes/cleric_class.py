@@ -1,8 +1,7 @@
 import random
 
-from player_skill_system.skills.cleric_skills.cleric_skill_tree import ClericSkillTree
-
 from game_files.entities.player import Player
+from game_files.player_skill_system.skills.cleric_skills.cleric_skill_tree import ClericSkillTree
 
 
 class ClericPlayer(Player):

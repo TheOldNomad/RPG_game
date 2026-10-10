@@ -1,8 +1,7 @@
 import random
 
-from player_skill_system.skills.warrior_skills.warrior_skill_tree import WarriorSkillTree
-
 from game_files.entities.player import Player
+from game_files.player_skill_system.skills.warrior_skills.warrior_skill_tree import WarriorSkillTree
 
 
 class WarriorPlayer(Player):

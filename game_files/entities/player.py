@@ -1,7 +1,13 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
 from game_files.inventories.player_inventory import Inventory
 from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
-from game_files.player_skill_system.skills import skill_tree_menu, skill_tree_template
+
+if TYPE_CHECKING:
+    from game_files.menus import skill_tree_menu
 
 
 class Player(DamageDealingEntity):
@@ -10,6 +16,8 @@ class Player(DamageDealingEntity):
     experience_points: int
 
     def __init__(self, given_name: str, given_rpg_class: str):
+        from game_files.player_skill_system.skills.skill_tree_template import SkillTreeTemplate
+
         self.name = given_name
         self.rpg_class = given_rpg_class
         self.current_level = 1
@@ -23,7 +31,7 @@ class Player(DamageDealingEntity):
         self.chosen_perk = None
         self.weapon_and_armor_slots = WeaponAndArmorSlots()
         self.inventory = Inventory()
-        self.skill_tree = skill_tree_template.SkillTreeTemplate()
+        self.skill_tree = SkillTreeTemplate()
 
     def see_player_state(self) -> None:
         print(
@@ -41,7 +49,8 @@ class Player(DamageDealingEntity):
         self.current_level += 1
         self.minimal_damage += 5
         self.maximal_damage += 5
-        skill_tree_menu.pick_new_skill(self)
+        if self.current_level / 2:
+            skill_tree_menu.pick_new_skill(self)
 
 
 # убрать skill_tree_menu, добавить вызов метода level_up у дочерних классов через super.init, с вызовом релевантного skill_tree_menu

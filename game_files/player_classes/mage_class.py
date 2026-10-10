@@ -1,8 +1,7 @@
 import random
 
-from player_skill_system.skills.mage_skills.mage_skill_tree import MageSkillTree
-
 from game_files.entities.player import Player
+from game_files.player_skill_system.skills.mage_skills.mage_skill_tree import MageSkillTree
 
 
 class MagePlayer(Player):

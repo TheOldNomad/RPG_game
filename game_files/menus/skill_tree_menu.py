@@ -1,11 +1,18 @@
-from game_files.entities.player import Player
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from game_files.player_skill_system.skills import skill_tree_and_menu_mediator
+
+if TYPE_CHECKING:
+    from game_files.entities.player import Player
 
 
 def pick_new_skill(player_character: Player) -> None:
-    player_character.skill_tree.view_relevant_skill_tree()
+    skill_tree_and_menu_mediator.view_relevant_skill_tree(player_character)
     skill_to_pick = int(input("Please, pick the skill you like"))
-    current_skill = player_character.skill_tree.choose_skill(skill_to_pick)
-    if not skill_to_pick:
+    current_skill = skill_tree_and_menu_mediator.select_skill(player_character, skill_to_pick)
+    if not current_skill:
         print("No such skill, try again")
         return
     player_command = input(f"""You chose {current_skill}. What will be your actions?\n
@@ -16,9 +23,9 @@ def pick_new_skill(player_character: Player) -> None:
         print("No such command, try again")
         return
     if player_command == "1":
-        current_skill.view_skill_description()
+        skill_tree_and_menu_mediator.view_selected_skill_description(current_skill)
         return
     if player_command == "2":
-        player_character.skill_tree.acquire_skill(player_character, skill_to_pick)
+        skill_tree_and_menu_mediator.acquire_selected_skill(player_character, skill_to_pick)
     else:
         return
