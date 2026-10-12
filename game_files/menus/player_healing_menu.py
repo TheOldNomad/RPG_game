@@ -1,10 +1,10 @@
+from modules.menu_module import inventory_menu
+
 from game_files.entities.player import Player
-from game_files.menus.inventory_menu import InventoryMenu
 
 
 class PlayerHealingMenu:
     def take_health_potion(self, player_character: Player) -> None:
-        inventory_menu = InventoryMenu()
         user_input = input("Your health seems low. Would you like to drink a potion?1 - Yes2 - No")
         if user_input not in {"1", "2"}:
             print("No such option, use your numpad, genius")

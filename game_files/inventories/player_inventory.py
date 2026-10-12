@@ -8,8 +8,6 @@ from game_files.items.weapons import Axe, Sword
 class Inventory:
     def __init__(self) -> None:
         self.player_inventory: list = [
-            Sword("Faggot slayer"),
-            Axe("N-word crusher"),
             HealthPotion("Baltica 9"),
             AdvancedHealthPotion("Okhota Krepkaya"),
         ]

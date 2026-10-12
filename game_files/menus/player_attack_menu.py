@@ -1,4 +1,5 @@
-from game_files.mediator_module.mediator_module import attack_mediator
+from modules.mediator_module import attack_mediator
+
 from game_files.entities.player import Player
 
 

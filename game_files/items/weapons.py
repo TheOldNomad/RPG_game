@@ -1,9 +1,9 @@
 import random
 
-from game_files.items.items import Item
+from game_files.items.active_combat_item import ActiveCombatItem
 
 
-class Weapon(Item):
+class Weapon(ActiveCombatItem):
     damage_dealt: int
     weapon_type: str
     hand_to_equip: str

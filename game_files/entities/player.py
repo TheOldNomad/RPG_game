@@ -1,5 +1,7 @@
 import random
 
+from modules.menu_module import skill_tree_menu
+
 from game_files.entities.damage_dealing_entity import DamageDealingEntity
 from game_files.inventories.player_inventory import Inventory
 from game_files.inventories.weapon_and_armor_slots import WeaponAndArmorSlots
@@ -14,14 +16,11 @@ class Player(DamageDealingEntity):
         self.name = given_name
         self.rpg_class = given_rpg_class
         self.current_level = 1
-        self.health_points = 60
         self.experience_points = 0
-        self.minimal_damage = 45
-        self.maximal_damage = 90
-        self.general_damage = random.randint(self.minimal_damage, self.maximal_damage)
         self.alive = True
         self.damage_stockphrases = ["Motherfucker", "Uuu suka", "You wanker", "Fuck, I'm bleeding"]
         self.death_stockphrases = ["Uuu suka", "I'm seeing stars...", "Bratan, this is fiasco", "I will meet Reagan.."]
+        self.acquired_skills = []
         self.weapon_and_armor_slots = WeaponAndArmorSlots()
         self.inventory = Inventory()
 
@@ -42,4 +41,4 @@ class Player(DamageDealingEntity):
         self.minimal_damage += 5
         self.maximal_damage += 5
         if self.current_level / 2:
-            self.skill_tree.view_relevant_skill_tree(self)
+            skill_tree_menu.pick_new_skill(self)

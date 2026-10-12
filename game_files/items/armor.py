@@ -1,9 +1,9 @@
 import random
 
-from game_files.items.items import Item
+from game_files.items.active_combat_item import ActiveCombatItem
 
 
-class Armor(Item):
+class Armor(ActiveCombatItem):
     armor_points: int
     slot_to_equip: str
 
