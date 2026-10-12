@@ -10,8 +10,9 @@ class Skill(ABC):
     def view_skill_description(self) -> str:
         pass
 
+
 class StatChangeSkill(Skill):
-    def __init__(self) -> None:
+    def __init__(self, name: str, description: str, effect: int) -> None:
         self.name = name
         self.description = description
         self.effect = effect
@@ -19,8 +20,9 @@ class StatChangeSkill(Skill):
     def view_skill_description(self) -> str:
         return self.description
 
+
 class AbilityChangeSkill(Skill):
-    def __init__(self) -> None:
+    def __init__(self, name: str, description: str, effect: int) -> None:
         self.name = name
         self.description = description
         self.effect = effect

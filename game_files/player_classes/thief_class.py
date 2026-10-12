@@ -1,8 +1,7 @@
 import random
 
-from player_skill_system.class_skill_trees.thief_skill_tree import ThiefSkillTree
-
 from game_files.entities.player import Player
+from game_files.player_skill_system.skills.thief_skills.thief_skill_tree import ThiefSkillTree
 
 
 class ThiefPlayer(Player):
@@ -12,4 +11,10 @@ class ThiefPlayer(Player):
         self.minimal_damage = 35
         self.maximal_damage = 75
         self.general_damage = random.randint(self.minimal_damage, self.maximal_damage)
+        self.strength = 4
+        self.magic = 4
+        self.endurance = 7
+        self.intelligence = 6
+        self.perception = 8
+        self.dexterity = 7
         self.skill_tree = ThiefSkillTree()

@@ -1,8 +1,7 @@
 import random
 
-from player_skill_system.class_skill_trees.mage_skill_tree import MageSkillTree
-
 from game_files.entities.player import Player
+from game_files.player_skill_system.skills.mage_skills.mage_skill_tree import MageSkillTree
 
 
 class MagePlayer(Player):
@@ -12,4 +11,10 @@ class MagePlayer(Player):
         self.minimal_damage = 40
         self.maximal_damage = 80
         self.general_damage = random.randint(self.minimal_damage, self.maximal_damage)
+        self.strength = 3
+        self.magic = 7
+        self.endurance = 4
+        self.intelligence = 8
+        self.perception = 7
+        self.dexterity = 4
         self.skill_tree = MageSkillTree()
