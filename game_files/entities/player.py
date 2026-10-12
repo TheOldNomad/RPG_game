@@ -45,15 +45,14 @@ class Player(DamageDealingEntity):
             f"{self.name}\n {self.rpg_class}\n Level {self.current_level}\n Experience {self.experience_points}/1000\n \
               Health points {self.health_points}"
         )
-    
+
     def see_player_stats(self) -> None:
-        print(f"{self.strength}\n
+        print(f"""{self.strength}\n
         f"{self.magic}\n
         f"{self.endurance}\n
         f"{self.intelligence}\n
         f"{self.perception}\n
-        f"{self.dexterity}\n
-        )
+        f"{self.dexterity}\n""")
 
     def gain_experience_points(self, gained_xp: int) -> None:
         self.experience_points += gained_xp
@@ -63,7 +62,6 @@ class Player(DamageDealingEntity):
 
     def change_stats(self) -> None:
         self.stat_change_points += 3
-
 
     def level_up(self) -> None:
         self.current_level += 1
