@@ -16,7 +16,7 @@ class Player(DamageDealingEntity):
     experience_points: int
 
     def __init__(self, given_name: str, given_rpg_class: str):
-        from game_files.player_skill_system.skills.skill_tree_template import SkillTreeTemplate
+        from player_subsystems_and_data.player_skill_system.skills.skill_tree_template import SkillTreeTemplate
 
         self.name = given_name
         self.rpg_class = given_rpg_class

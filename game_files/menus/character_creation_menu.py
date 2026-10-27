@@ -1,10 +1,10 @@
 from game_files.entities.player import Player
 from game_files.menus import perk_menu, skill_tree_menu
-from game_files.player_classes.bard_class import BardPlayer
-from game_files.player_classes.cleric_class import ClericPlayer
-from game_files.player_classes.mage_class import MagePlayer
-from game_files.player_classes.thief_class import ThiefPlayer
-from game_files.player_classes.warrior_class import WarriorPlayer
+from game_files.player_subsystems_and_data.player_classes.bard_class import BardPlayer
+from game_files.player_subsystems_and_data.player_classes.cleric_class import ClericPlayer
+from game_files.player_subsystems_and_data.player_classes.mage_class import MagePlayer
+from game_files.player_subsystems_and_data.player_classes.thief_class import ThiefPlayer
+from game_files.player_subsystems_and_data.player_classes.warrior_class import WarriorPlayer
 
 
 def create_new_character() -> Player:

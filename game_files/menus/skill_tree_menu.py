@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from game_files.player_skill_system.skills import skill_tree_and_menu_mediator
+from player_subsystems_and_data.player_skill_system.skills import skill_tree_and_menu_mediator
 
 if TYPE_CHECKING:
     from game_files.entities.player import Player
